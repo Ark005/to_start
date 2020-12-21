@@ -37,14 +37,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-   
-    'django.contrib.sites',
+
+
 
     'allauth',
     'allauth.account',
@@ -54,6 +48,16 @@ INSTALLED_APPS = [
     'products',
     'crispy_forms',
     'django_filters',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+   
+    'django.contrib.sites',
+
+   
 ]
 
 MIDDLEWARE = [
@@ -71,6 +75,7 @@ ROOT_URLCONF = 'ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -83,6 +88,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
