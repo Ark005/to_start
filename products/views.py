@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from products.models import Product
+
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .filters import ProductFilter
@@ -10,6 +10,9 @@ from django.http import JsonResponse
 from django.core import serializers
 from .forms import FriendForm
 from .models import Friend, Product
+
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseNotFound
 
 from django.views import View
 
@@ -32,14 +35,6 @@ class ProductDetail(LoginRequiredMixin, DetailView):
 	model = Product
 
 
-from django.http import JsonResponse
-from django.core import serializers
-from .forms import FriendForm
-from .models import Friend
-
-from django.views import View
-
-
 
 def postFriend(request):
     # request should be ajax and method should be POST.
@@ -60,8 +55,7 @@ def postFriend(request):
     # some error occured
     return JsonResponse({"error": ""}, status=400)
 
-from django.http import JsonResponse
-from .models import Friend
+
 
 def checkNickName(request):
     # request should be ajax and method should be GET.
@@ -79,8 +73,7 @@ def checkNickName(request):
     return JsonResponse({}, status = 400)
 
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponseNotFound
+
 
 def indexView(request, slug):
     form = FriendForm()
