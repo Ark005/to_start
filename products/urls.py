@@ -7,15 +7,14 @@ urlpatterns = [
     # path('', Home.as_view(), name='home'),
     path('', home, name='home'),
     path('p', Home.as_view(), name='home'),
-    path('product/<slug>/', ProductDetail.as_view(), name='product'),
-    path('product/<slug>/', postFriend),
+    # path('product/<slug>/', ProductDetail.as_view(), name='product'),
+    # path('product/<slug>/', postFriend),
+    path('product/<slug>/', indexView, name='product'),
     path('cart/', CartView, name='cart-home'),
     path('cart/<slug>', add_to_cart, name='cart'),
     path('decrease-cart/<slug>', decreaseCart, name='decrease-cart'),
     path('remove/<slug>', remove_from_cart, name='remove-cart'),
-
-    
-    
+    # path('post/ajax/friend', postFriend, name = "post_friend"),
 ]
 
 

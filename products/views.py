@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.core import serializers
 from .forms import FriendForm
-from .models import Friend
+from .models import Friend, Product
 
 from django.views import View
 
@@ -78,16 +78,34 @@ def checkNickName(request):
 
     return JsonResponse({}, status = 400)
 
-def indexView(request):
-    form = FriendForm()
-    friends = Friend.objects.all()
-    return render(request, "product/<slug>/", {"form": form, "friends": friends})
-def postFriend(request):
 
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseNotFound
+
+def indexView(request, slug):
     form = FriendForm()
     friends = Friend.objects.all()
-    return render(request, "product/<slug>/", {"form": form, "friends": friends})
+
+
     
+    # Для примера берем первый объект модели Product
+    # object = Product.objects.first()
+
+    # object = Product.objects.get(slug = slug)
+
+    try:
+        product = Product.objects.get(slug = slug)
+    except ObjectDoesNotExist:
+        product = None
+        # return HttpResponseNotFound("<h2>Not Found</h2>")
+        # return JsonResponse(status=404, data={'status':'false','message':"Object Does Not Exist"})
+
+    # return render(request, "product/<slug>/", {"form": form, "friends": friends})
+    return render(request, "products/product_detail.html", {"form": form, "friends": friends, "object": product})
+
+
+
+def postFriend(request):
     # request should be ajax and method should be POST.
     if request.is_ajax and request.method == "POST":
         # get the form data
@@ -108,10 +126,9 @@ def postFriend(request):
 
 
 
-
 class FriendView(View):
     form_class = FriendForm
-    template_name = "product/<slug>/"
+    template_name = "products/product_detail.html"
 
     def get(self, *args, **kwargs):
         form = self.form_class()
@@ -137,8 +154,4 @@ class FriendView(View):
 
         # some error occured
         return JsonResponse({"error": ""}, status=400)
-
-
-
-
 	

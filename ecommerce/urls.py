@@ -27,8 +27,8 @@ from products.views import (
 urlpatterns = [
  	path('', include('products.urls', namespace='mainapp')),
  	path('', include('checkout.urls', namespace='checkout')),
-    path('product_detail.html',indexView),
-    path('http://127.0.0.1:8000/product/br/',indexView),
+    # path('product_detail.html',indexView),
+    # path('product/br/',indexView),
     path('post/ajax/friend', postFriend, name = "post_friend"),
     path('get/ajax/validate/nickname', checkNickName, name = "validate_nickname"),
     path('admin/', admin.site.urls),

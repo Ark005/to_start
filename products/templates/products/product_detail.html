@@ -3,42 +3,60 @@
 
 {% block content %}
 
-
-
 <div class="container my-5">
-
-	
+    
 <div class="card">
-	<div class="row">
-		<aside class="col-sm-5 border-right">
+    <div class="row">
+        <aside class="col-sm-5 border-right">
 <article class="gallery-wrap"> 
 <div class="img-big-wrap">
   <div> <a href="#"><img src="/media/{{ object.mainimage }}" style="width: 450px"></a></div>
 </div> <!-- slider-product.// -->
 </article> <!-- gallery-wrap .end// -->
-		</aside>
-		<aside class="col-sm-7">
+        </aside>
+        <aside class="col-sm-7">
 <article class="card-body p-5">
-	<h3 class="title mb-3">{{ object.name }}</h3>
+    <h3 class="title mb-3">{{ object.name }}</h3>
 <p class="price-detail-wrap"> 
-	<span class="price h3 text-warning"> 
-		<span class="currency">US $</span><span class="num">{{ object.price }}</span>
-	</span> 
-	
+    <span class="price h3 text-warning"> 
+        <span class="currency">US $</span><span class="num">{{ object.price }}</span>
+    </span> 
+    
 </p> <!-- price-detail-wrap .// -->
 <dl class="item-property">
   <dt>Description</dt>
   <dd><p>{{ object.preview_text }}</p></dd>
 </dl>
 
-	<a href="{% url 'mainapp:cart' object.slug %}" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+    <a href="{% url 'mainapp:cart' object.slug %}" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
 </article> <!-- card-body.// -->
-		</aside> <!-- col.// -->
-	</div> <!-- row.// -->
+        </aside> <!-- col.// -->
+    </div> <!-- row.// -->
 </div> <!-- card.// -->
 
 
-div class="container-fluid">
+<div class="container-fluid">
+    <form id="friend-form">
+        <div class="row">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group col-4">
+                <label class="col-12">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            
+            <div class = "col text-center">
+                <input type="submit" class="btn btn-primary" value="Create Friend" />
+            </div>
+
+        </div>
+    <form>
+</div>
+
+<hr />
+
+<div class="container-fluid">
     <table class="table table-striped table-sm" id="my_friends">
         <thead>
             <tr>
