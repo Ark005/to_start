@@ -1,25 +1,39 @@
 {% extends 'products/base.html' %}
 
+
+
+
+
 {% load crispy_forms_tags %}
 
+
+
+
 {% block content %}
+
+
+
+
 
   <div class="container my-5">
   	<h2 class="my-5">Свойства продуктов</h2>
     <div class="row">
     <div class="col-md-3">
-         <form method="get">
-            {{ filter.form| crispy }}
-            <button type="submit">Поиск</button>
-        </form>
-    </div>
+	
+			<form method="get">
+				{{ filter.form| crispy }}
+			<button type= "submit"
+		class= "btn btn-success btn-buy">
+		  поиск 
+		</button>
+		</div> 
     <div class="col-md-9">
 		<div class="row">
 			{% for product in filter.qs %}
 		  <div class="col-md-6 col-sm-12 col-lg-4">
 			<figure class="card card-product">
 				<div class="img-wrap"> 
-					<img src="media/{{ product.mainimage }}" style="width: 100%; height: 300px;">
+					<img src="media/{{ product.mainimage }}" style="width: 100%; height: 250px;">
 				</div>
 				<figcaption class="info-wrap">
 					<h6 class="title text-dots"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h6>
@@ -30,8 +44,8 @@
 <!--             <a href="remove/{{ product.slug }}" class="btn btn-danger btn-sm"> Remove</a>
  -->						<!-- price-wrap.// -->
 						 <div class="price-wrap h5">
-							<span class="price-new">руб. {{product.price}}</span>
-							<del class="price-old">руб. 1980</del>
+							<!-- <span class="price-new">руб. {{product.price}}</span>-->
+							<!-- <del class="price-old">руб. 1980</del>-->
 						</div> 
 					</div> <!-- action-wrap -->
 				</figcaption>
