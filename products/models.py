@@ -33,24 +33,29 @@ class  Product(models.Model):
         })
 class Friend(models.Model):
     # NICK NAME should be unique
-    nick_name = models.CharField(max_length=100, unique =  True)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    likes = models.CharField(max_length = 250)
+    #nick_name = models.CharField(max_length=100, unique =  True)
+    #first_name = models.CharField(max_length=100)
+    #last_name = models.CharField(max_length=100)
+    #ikes = models.CharField(max_length = 250)
     dob = models.DateField(auto_now=False, auto_now_add=False)
-    lives_in = models.CharField(max_length=150, null = True, blank = True)
+    #lives_in = models.CharField(max_length=150, null = True, blank = True)
+    #friend_size = models.CharField(max_length=20, choices=BOX_SIZES,default='240х185х120')
+    tirazh = models.IntegerField(null=False)
 
+
+  
+    
     def __str__(self):
         return self.nick_name
 
-# class Friend(models.Model):
-#     # NICK NAME should be unique
-#     nick_name = models.CharField(max_length=100, unique =  True)
-#     first_name = models.CharField(max_length=100)
-#     last_name = models.CharField(max_length=100)
-#     likes = models.CharField(max_length = 250)
-#     dob = models.DateField(auto_now=False, auto_now_add=False)
-#     lives_in = models.CharField(max_length=150, null = True, blank = True)
+    def save(self, *args, **kwargs):
+        self.__class__.objects.exclude(id=self.id).delete()
+        super(Friend, self).save(*args, **kwargs)
+ 
+    @classmethod
+    def load(cls):
+        try:
+            return cls.objects.get()
+        except cls.DoesNotExist:
+            return cls()
 
-#     def __str__(self):
-#         return self.first_name + self.last_name

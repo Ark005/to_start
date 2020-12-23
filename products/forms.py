@@ -44,7 +44,7 @@ class FriendForm(forms.ModelForm):
     class Meta:
         model = Friend
         #fields = ("__all__")
-        fields = ('dob',)
+        fields = ('dob','tirazh')
 
        
         
