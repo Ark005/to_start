@@ -79,8 +79,6 @@ def indexView(request, slug):
     form = FriendForm()
     friends = Friend.objects.all()
 
-
-    
     # Для примера берем первый объект модели Product
     # object = Product.objects.first()
 
@@ -98,9 +96,30 @@ def indexView(request, slug):
 
 
 
+# def postFriend(request):
+#     # request should be ajax and method should be POST.
+#     if request.is_ajax and request.method == "POST":
+#         # get the form data
+#         form = FriendForm(request.POST)
+#         # save the data and after fetch the object in instance
+#         if form.is_valid():
+#             instance = form.save()
+#             # serialize in new friend object in json
+#             ser_instance = serializers.serialize('json', [ instance, ])
+#             # send to client side.
+#             return JsonResponse({"instance": ser_instance}, status=200)
+#         else:
+#             # some form errors occured.
+#             return JsonResponse({"error": form.errors}, status=400)
+
+#     # some error occured
+#     return JsonResponse({"error": ""}, status=400)
+
 def postFriend(request):
     # request should be ajax and method should be POST.
     if request.is_ajax and request.method == "POST":
+
+        print('GET request AJAX')
         # get the form data
         form = FriendForm(request.POST)
         # save the data and after fetch the object in instance
@@ -116,6 +135,7 @@ def postFriend(request):
 
     # some error occured
     return JsonResponse({"error": ""}, status=400)
+
 
 
 
@@ -147,4 +167,41 @@ class FriendView(View):
 
         # some error occured
         return JsonResponse({"error": ""}, status=400)
-	
+
+from .forms import SubproductForm
+
+from django.shortcuts import render, HttpResponse
+
+def get_subcategory(request, subcategory):
+    print("subcategory", subcategory)
+
+    product_list  = Product.objects.filter(subcategory = subcategory)
+    product_filter = ProductFilter(request.GET, queryset=product_list)
+
+    return render(request, 'products/subcategory_products.html', {'filter': product_filter})
+    # return render(request, 'products/home.html', {'filter': product_filter})
+
+
+    # if request.method == "POST":
+    #     form = SubproductForm(request.POST)
+    #     if form.is_valid():
+    #         subcategory = form.cleaned_data["name"]
+    #         subcategory_product = Product.objects.filter(subcategory = subcategory)
+    # return HttpResponse("<h2>Hello, !!</h2>")
+
+def show_subcategory(request):
+    if request.method == "POST":
+        form = SubproductForm(request.POST)
+        if form.is_valid():
+            subcategory = form.cleaned_data["name"]
+            subcategory_product = Product.objects.filter(subcategory = subcategory)
+
+        return render(request, 'products/sub_test.html', {'subcategory_product': subcategory_product})
+
+    elif request.method == "GET":
+        my_form = SubproductForm()
+        # return render(request, 'products/subproduct.html', {'form': my_form})
+        return render(request, 'products/sub_test.html', {'form': my_form})
+
+
+

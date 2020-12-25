@@ -18,10 +18,29 @@
 <article class="card-body p-5">
     <h3 class="title mb-3">{{ object.name }}</h3>
 <p class="price-detail-wrap"> 
-    <span class="price h3 text-warning"> 
-        <span class="currency">US $</span><span class="num">{{ object.price }}</span>
-    </span> 
+
+
+<td>
+    <td>{{object.tirazh}}</td>
+
+</td>
+
+<script>
+                
+    var x = {{object.tirazh}} ;
+
+    var res = x*20; }
+    document.getElementById("result").innerHTML = var x;
     
+    
+ </script>
+
+
+    <span class="price h3 text-warning"> 
+        <span class="num">var x</span>  <span class="currency">рублей</span>
+    </span> 
+        
+</td>
 </p> <!-- price-detail-wrap .// -->
 <dl class="item-property">
   <dt>Description</dt>
@@ -34,6 +53,7 @@
     </div> <!-- row.// -->
 </div> <!-- card.// -->
 
+<hr />
 
 <div class="container-fluid">
     <form id="friend-form">
@@ -60,9 +80,8 @@
     <table class="table table-striped table-sm" id="my_friends">
         <thead>
             <tr>
-           
+                <th>tirazh</th>
                 <th>DOB</th>
-            
             </tr>
         </thead>
         <tbody>
@@ -79,40 +98,6 @@
 </div>
 
 {% endblock %}
-
-
-
-</div>
-<!--container.//-->
-<div class="container-fluid">
-    <form id="friend-form">
-        <div class="row">
-            {% csrf_token %}
-            {% for field in form %}
-            <div class="form-group col-4">
-                <label class="col-12">{{ field.label }}</label>
-                {{ field }}
-            </div>
-            {% endfor %}
-            
-            <div class = "col text-center">
-                <input type="submit" class="btn btn-primary" value="Create Friend" />
-            </div>
-
-        </div>
-    <form>
-</div>
-
-<hr />
-
-
-
-
-
-
-
-
-
 
 
 
@@ -138,17 +123,17 @@
                     // on successfull creating object
                     // 1. clear the form.
                     $("#friend-form").trigger('reset');
+
                     // 2. focus to nickname input 
-                    $("#id_nick_name").focus();
+                    // $("#id_nick_name").focus();
 
                     // display the newly friend to table.
                     var instance = JSON.parse(response["instance"]);
                     var fields = instance[0]["fields"];
                     $("#my_friends tbody").prepend(
                         `<tr>
-                    
+                        <td>${fields["tirazh"]||""}</td>
                         <td>${fields["dob"]||""}</td>
-                        <td>${fields["lives_in"]||""}</td>
                         </tr>`
                     )
                 },
