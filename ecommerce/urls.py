@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.urls import path
 from products.views import (
     indexView,
-    postFriend, 
+    postProduct, 
     checkNickName,
 )
 
@@ -29,7 +29,7 @@ urlpatterns = [
  	path('', include('checkout.urls', namespace='checkout')),
     # path('product_detail.html',indexView),
     # path('product/br/',indexView),
-    path('post/ajax/friend', postFriend, name = "post_friend"),
+    path('post/ajax/product', postProduct, name = "post_product"),
     path('get/ajax/validate/nickname', checkNickName, name = "validate_nickname"),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
