@@ -218,8 +218,7 @@ def postProduct(request):
     # some error occured
     return JsonResponse({"error": ""}, status=400)
 
-
-
+"""
 
 class FriendView(View):
     form_class = FriendForm
@@ -249,7 +248,7 @@ class FriendView(View):
 
         # some error occured
         return JsonResponse({"error": ""}, status=400)
-
+"""
 from .forms import SubproductForm
 
 from django.shortcuts import render, HttpResponse

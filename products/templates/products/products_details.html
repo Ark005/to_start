@@ -5,6 +5,7 @@
 
 {% block content %}
 
+{% for product in products %}
 
 <div class="container my-5">
     
@@ -13,6 +14,7 @@
             <aside class="col-sm-5 border-right">
     <article class="gallery-wrap"> 
     <div class="img-big-wrap">
+       
       <div> <a href="#"><img src="/media/{{product.mainimage }}" style="width: 450px"></a></div>
     </div> <!-- slider-product.// -->
     </article> <!-- gallery-wrap .end// -->
@@ -28,16 +30,7 @@
     
     </td>
     
-    <script>
-                    
-        var x = {{object.tirazh}} ;
     
-        var res = x*20; }
-        document.getElementById("result").innerHTML = var x;
-        <span class="price h3 text-warning"> 
-
-    </script>
- 
     
         <span class="price h3 text-warning">  
             <span class="num">₽<span<p id="result"><p>  </span>
@@ -46,25 +39,8 @@
             
     </td>   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <h3 class="title mb-3">{{ product.name }}</h3>
+    <h6 class="title mb-3">{{product.detail_text }}</h3>
 <div class="container-fluid">
     <form id="product-form">
         <div class="row">
@@ -76,6 +52,9 @@
                 {{ field }}
             
             </div>
+
+          
+
             {% endfor %}
             
             
@@ -93,18 +72,21 @@
     <table class="table table-striped table-sm" id="my_products">  
         <thead>
             <tr>
-                <th>Размер(мм (Д х Ш х В))</th>
-                <th>Стоимость(руб.)</th>
+                <th>Размер(Д х Ш х В)</th>
+                <th>Дата производства</th>
                 <th>Тираж(шт.)</th>
                 
                 
             </tr>
         </thead>
         <tbody>
-        {% for product in products %}
-
+           
+        
+  
+        
         <tr>
             <td>{{product.box_size}}</td>
+            <td>{{product.dob}}</td>
             <td>
 
                 <p id="result"></p>
@@ -127,7 +109,7 @@
                     document.getElementById("result").innerHTML = res;
                 </script>                
             </td>
-           
+            
             <td>{{product.tirazh}}</td>
             
 

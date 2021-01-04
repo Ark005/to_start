@@ -1,10 +1,7 @@
 {% extends 'products/base.html' %}
 
 
-
 {% block content %}
-
-
 
 <div class="container my-5">
     
@@ -13,7 +10,7 @@
         <aside class="col-sm-5 border-right">
 <article class="gallery-wrap"> 
 <div class="img-big-wrap">
-  <div> <a href="#"><img src=" media/{{ product.mainimage }}" style="width: 450px"></a></div>
+  <div> <a href="#"><img src="/media/{{ object.mainimage }}" style="width: 450px"></a></div>
 </div> <!-- slider-product.// -->
 </article> <!-- gallery-wrap .end// -->
         </aside>
@@ -25,10 +22,8 @@
 
 <td>
     <td>{{object.tirazh}}</td>
-  
 
 </td>
-
 
 <script>
                 
