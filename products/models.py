@@ -71,9 +71,9 @@ class  Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default = None, null=True)
     preview_text = models.TextField(max_length=200, verbose_name='Preview Text', blank=True, null=True)
     detail_text = models.TextField(max_length=1000, verbose_name='Detail Text', blank=True, null=True)
-    #price = models.FloatField(default = None, null=True)
+    price = models.FloatField(default = None, null=True)
     tirazh = models.IntegerField(null=False)
-    dob = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
+    dob = models.DateField(auto_now=False, auto_now_add=True, blank=True, null=True)
     pt = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='80х80х40')
     

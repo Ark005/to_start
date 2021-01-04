@@ -16,6 +16,10 @@
     <div class="img-big-wrap">
        
       <div> <a href="#"><img src="/media/{{product.mainimage }}" style="width: 450px"></a></div>
+     <h4> </h4>
+     <a href="{% url 'mainapp:cart' product.slug %}" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i>  Заказать </a>
+      
+      
     </div> <!-- slider-product.// -->
     </article> <!-- gallery-wrap .end// -->
             </aside>
@@ -40,6 +44,7 @@
     </td>   
 
     <h3 class="title mb-3">{{ product.name }}</h3>
+  
     <h6 class="title mb-3">{{product.detail_text }}</h3>
 <div class="container-fluid">
     <form id="product-form">
@@ -59,11 +64,13 @@
             
             
             <div class = "col text-center">
-                <input type="submit" class="btn btn-primary" value="Цена" />
+                
+                <h4> </h4><input type="submit" class="btn btn-primary" value="Рассчитать" /> 
+                
             </div>
 
         </div>
-    <form>
+    <form>  
 </div>
 
 <hr />
@@ -73,7 +80,7 @@
         <thead>
             <tr>
                 <th>Размер(Д х Ш х В)</th>
-                <th>Дата производства</th>
+                <th>Отгрузка</th>
                 <th>Тираж(шт.)</th>
                 
                 
