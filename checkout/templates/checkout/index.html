@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container mt-5">
-  <h2 class="mb-3">Shipping Address > <span class="text-muted">Checkout</span></h2>
+  <h2 class="mb-3">Адрес доставки  <span class="text-muted">Проверка</span></h2>
   <div class="row">
     <div class="col-md-9">
      <div class="card mb-5" style="height: auto">
@@ -12,7 +12,7 @@
           {% csrf_token %}
 
          {{ form | crispy}}
-          <button type="submit" class="btn btn-primary float-right">Next</button>
+          <button type="submit" class="btn btn-primary float-right">Далее</button>
           </form>
        </div>
      </div>
@@ -23,10 +23,10 @@
           <p><b>Aдрес :</b> {{ savedAddress.address }}</p>
           <p><b>Город :</b> {{ savedAddress.city }}</p>
           <p><b>Почтовый код :</b> {{ savedAddress.zipcode }}</p>
-          <p><b>Landmark :</b> {{ savedAddress.landmark }}</p>
+          <p><b>Ориентир :</b> {{ savedAddress.landmark }}</p>
         </div>
         <div class="card-body">
-           <a href="{% url 'checkout:payment' %}" class="btn btn-primary float-right">Proceed to Checkout with the saved Address</a>
+           <a href="{% url 'checkout:payment' %}" class="btn btn-primary float-right">Перейдите к оформлению заказа с сохраненным адресом</a>
         </div>
       </div>
       {% endif %}
@@ -36,12 +36,13 @@
         <div class="card-body">
           <ul class="list-group list-group-flush">
             {% for item in order_items %}
-            <li class="list-group-item">{{ item.item.name }} x {{ item.quantity }}</li>
+           <!--<li class="list-group-item">{{ item.item.name }} x {{ item.quantity }}</li>--> 
+            <li class="list-group-item">{{ item.item.name }} </li>
             {% endfor %}
           </ul>
         </div>
            <div class="card-footer">
-            <span class="float-left"><b>Order Total</b></span>
+            <span class="float-left"><b>Сумма</b></span>
             <span class="float-right"><b>₽ {{ order_total | floatformat:2 }}</b></span>
           </div>
       </div>

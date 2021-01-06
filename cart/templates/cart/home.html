@@ -3,14 +3,16 @@
 {% block content %}
 <div class="container my-5">
 <div class="my-5">
-	<h2>Ваша корзина</h2>
+	<h2>Ваш Заказ</h2>
 </div>
 <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">№</th>     
       <th scope="col">Наименование продукта</th>
+      <th scope="col">Размер изделия</th>
       <th scope="col">Тираж</th>
+      <th scope="col">Дата</th>
       <th scope="col">Цена</th>
     </tr>
   </thead>
@@ -19,13 +21,10 @@
     <tr>
       <th scope="row">{{ forloop.counter }}</th>
       <td>{{ cart.item.name }}</td>
-      <td>
- 
-    
-      {{ cart.item.tirazh}}
-     
-   
-      </td>
+      <td>{{ cart.item.box_size}}</td
+        <td>
+      <td>{{ cart.item.tirazh}} </td>
+      <td>{{ cart.item.timeplus}} </td>
       <td>₽{{ cart.get_total }}</td>
     </tr>
 	{% endfor %}

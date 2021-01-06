@@ -78,8 +78,8 @@ class  Product(models.Model):
 
     def timeplus(self):
 
-        #t = Product.t
-        t = 7
+        t = self.t
+    
         futuredate = datetime.now() + timedelta(days=t)
 
         return futuredate 

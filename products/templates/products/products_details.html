@@ -101,8 +101,10 @@
        
       <div> <a href="#"><img src="/media/{{product.mainimage }}" style="width: 450px"></a></div>
      <h4> </h4>
+
+   
      <a href="{% url 'mainapp:cart' product.slug %}" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i>  Заказать </a>
-      
+   
       
     </div> <!-- slider-product.// -->
     </article> <!-- gallery-wrap .end// -->
@@ -146,12 +148,13 @@
 
             {% endfor %}
             
-            
+           
             <div class = "col text-center">
                 
                 <h4> </h4><input type="submit" class="btn btn-primary" value="Рассчитать" /> 
                 
             </div>
+            
 
         </div>
     <form>  
