@@ -26,7 +26,7 @@ class Home(ListView):
         context['filter'] = ProductFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
-
+# выводит категории
 def home(request):
     category_list = Category.objects.all()
     category_filter = CategoryFilter(request.GET, queryset=category_list)
@@ -118,14 +118,14 @@ def indexView(request, slug):
 
 def new_indexView(request, slug):
     form = ProductForm()
-    products = Product.objects.all()
+    # products = Product.objects.all()
     
     try:
         product = Product.objects.get(slug = slug)
     except ObjectDoesNotExist:
         product = None
 
-    return render(request, "products/products_details.html", {"form": form, "products": products})
+    return render(request, "products/products_details.html", {"form": form, "products": [product]})
 
 
 
@@ -277,6 +277,15 @@ def get_products(request, category, subcategory):
     # product_filter = ProductFilter(request.GET, queryset=product_list)
 
     return render(request, 'products/subcategory_products.html', {'products': product_list})
+
+
+def products_by_category(request, category):
+    print("category", category)
+
+    product_list  = Product.objects.filter(category = category)
+    # product_filter = ProductFilter(request.GET, queryset=product_list)
+
+    return render(request, 'products/category_products.html', {'products': product_list})
 
 
 
