@@ -26,6 +26,8 @@ class SubCategory(models.Model):
 
 from polymorphic.models import PolymorphicModel
 
+from django.utils.translation import gettext_lazy as _
+
 #Product Model
 # class  Product(models.Model):
 class  Product(PolymorphicModel):
@@ -51,15 +53,37 @@ class  Product(PolymorphicModel):
         except cls.DoesNotExist:
             return cls()
 
+    # BOX_SIZES = (
+    #             ('50х50х35', '50х50х35'),
+    #             ('60х60х40', '60х60х40'),
+    #             ('60х60х40-P', '60х60х40-P'),
+    #             ('80х80х40', '80х80х40'),
+    #             ('80х80х40-P', '80х80х40-P'),
+    #             ('240х185х120', '240х185х120'),
+    #             ('270х220х70', '270х220х70'),
+    #             )
+    
+    # BOX_SIZES = (
+    #             ('270х220х70', '270х220х70'),
+    #             )
+
+
+    # class BOX_SIZES(models.TextChoices):
+    #     size1 = '270х220х70', _('270х220х70')
+
+    #     class Meta:
+    #         abstract = True
+
+    # BOX_SIZES = None
     BOX_SIZES = (
-                ('50х50х35', '50х50х35'),
-                ('60х60х40', '60х60х40'),
-                ('60х60х40-P', '60х60х40-P'),
-                ('80х80х40', '80х80х40'),
-                ('80х80х40-P', '80х80х40-P'),
-                ('240х185х120', '240х185х120'),
-                ('270х220х70', '270х220х70'),
-                )
+        ('50х50х35', '50х50х35'),
+        )
+
+    # @property
+    # def box_sizes(self):
+    #    return self.BOX_SIZES
+
+
 
     mainimage = models.ImageField(upload_to='products/', blank=True, null=True)
     name = models.CharField(max_length=300, default = None, null=True)
@@ -73,6 +97,8 @@ class  Product(PolymorphicModel):
     t = models.IntegerField(null=True)
     #t =  models.DateField(auto_now=False, auto_now_add= False)
     box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='80х80х40')
+    # box_size = models.CharField(max_length=48, choices=BOX_SIZES.choices, default='80х80х40')
+
 
 
 
@@ -130,29 +156,55 @@ class  Product(PolymorphicModel):
         else:
             return 0
 
+    # class Meta:
+    #     abstract = True
+
 
 class BoxType1(Product):
     """docstring for BoxType1"""
 
-    BOX_SIZES = (
+    def __init__(self, *args, **kwargs):
+        BOX_SIZES = (
             ('240х185х120', '240х185х120'),
             ('270х220х70', '270х220х70'),
             )
 
-    # box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='80х80х40')
+        self._meta.get_field('box_size').default  = '240х185х120'
+        self._meta.get_field('box_size').choices = BOX_SIZES
+        super(BoxType1, self).__init__(*args, **kwargs)
+    
+    # class Meta:
+    #     proxy = True
+
+
+    # class BOX_SIZES(models.TextChoices):
+    #     size1 = '240х185х120', _('240х185х120')
+
+    # box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='240х185х120')
+
 
 class BoxType2(Product):
     """docstring for BoxType1"""
-    
-    BOX_SIZES = (
+
+    def __init__(self, *args, **kwargs):
+        BOX_SIZES = (
             ('50х50х35', '50х50х35'),
             ('60х60х40', '60х60х40'),
             )
 
-    # box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='80х80х40')
+        self._meta.get_field('box_size').default  = '240х185х120'
+        self._meta.get_field('box_size').choices = BOX_SIZES
+        super(BoxType2, self).__init__(*args, **kwargs)
+    
+    # BOX_SIZES = (
+    #         ('50х50х35', '50х50х35'),
+    #         ('60х60х40', '60х60х40'),
+    #         )
 
+    # class BOX_SIZES(models.TextChoices):
+    #     size1 = '50х50х35', _('50х50х35')
+    # box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='50х50х35')
 
-        
 
 '''
 class Payment(models.Model):

@@ -42,12 +42,10 @@ class ModelBAdmin(ModelAChildAdmin):
     base_model = BoxType2  # Explicitly set here!
     # define custom features here
 
-
-
 # Базовая модель
 @admin.register(Product) # Декоратор для регистрации
 class ProductParentAdmin(PolymorphicParentModelAdmin):
     """ The parent model admin """
     base_model = Product  # Optional, explicitly set here.
-    child_models = (BoxType1, BoxType2)
+    child_models = (BoxType2, BoxType1)
     list_filter = (PolymorphicChildModelFilter,)  # This is optional

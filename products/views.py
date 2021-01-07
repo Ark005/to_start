@@ -116,17 +116,40 @@ def indexView(request, slug):
     # return render(request, "product/<slug>/", {"form": form, "friends": friends})
     return render(request, "products/product_detail.html", {"form": form, "products": products, "object": product})
 
+
+
+# Старая вьюха
+# def new_indexView(request, slug):
+#     form = ProductForm()
+#     # products = Product.objects.all()
+    
+#     try:
+#         product = Product.objects.get(slug = slug)
+#     except ObjectDoesNotExist:
+#         product = None
+
+#     return render(request, "products/products_details.html", {"form": form, "products": [product]})
+
+from django.forms import modelform_factory
+
 def new_indexView(request, slug):
-    form = ProductForm()
+    # form = ProductForm()
     # products = Product.objects.all()
     
     try:
         product = Product.objects.get(slug = slug)
+        print("тип продукта", type(product))
+        form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'))
     except ObjectDoesNotExist:
         product = None
 
     return render(request, "products/products_details.html", {"form": form, "products": [product]})
 
+
+
+# >>> from django.forms import modelform_factory
+# >>> from myapp.models import Book
+# >>> BookForm = modelform_factory(Book, fields=("author", "title"))
 
 
 # def boxView1(request):
