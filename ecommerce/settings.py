@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'polymorphic',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

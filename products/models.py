@@ -24,10 +24,12 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
 
-
+from polymorphic.models import PolymorphicModel
 
 #Product Model
-class  Product(models.Model):
+# class  Product(models.Model):
+class  Product(PolymorphicModel):
+
 
     def __str__(self):
         return self.name
@@ -57,9 +59,7 @@ class  Product(models.Model):
                 ('80х80х40-P', '80х80х40-P'),
                 ('240х185х120', '240х185х120'),
                 ('270х220х70', '270х220х70'),
-            
-          
-        )
+                )
 
     mainimage = models.ImageField(upload_to='products/', blank=True, null=True)
     name = models.CharField(max_length=300, default = None, null=True)
@@ -129,6 +129,30 @@ class  Product(models.Model):
 
         else:
             return 0
+
+
+class BoxType1(Product):
+    """docstring for BoxType1"""
+
+    BOX_SIZES = (
+            ('240х185х120', '240х185х120'),
+            ('270х220х70', '270х220х70'),
+            )
+
+    # box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='80х80х40')
+
+class BoxType2(Product):
+    """docstring for BoxType1"""
+    
+    BOX_SIZES = (
+            ('50х50х35', '50х50х35'),
+            ('60х60х40', '60х60х40'),
+            )
+
+    # box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='80х80х40')
+
+
+        
 
 '''
 class Payment(models.Model):
