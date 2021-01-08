@@ -142,15 +142,9 @@ def new_indexView(request, slug):
         form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'))
     except ObjectDoesNotExist:
         product = None
+        form = None
 
     return render(request, "products/products_details.html", {"form": form, "products": [product]})
-
-
-
-# >>> from django.forms import modelform_factory
-# >>> from myapp.models import Book
-# >>> BookForm = modelform_factory(Book, fields=("author", "title"))
-
 
 # def boxView1(request):
 #     form = BoxForm()
@@ -178,48 +172,86 @@ def new_indexView(request, slug):
 #     # some error occured
 #     return JsonResponse({"error": ""}, status=400)
 
+# from .forms import ProductFormSet
+from .forms import ProductFormCommon
+
+
+# Обработка аякса
 def postProduct(request):
     # request should be ajax and method should be POST.
     if request.is_ajax and request.method == "POST":
 
+
         print('GET request AJAX')
+        # print(request.POST.items())
+        for item in  request.POST.items():
+            print(item)
+
+
         # get the form data
         form = ProductForm(request.POST)
+
+        # form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'))
+        
+        # form  = modelform_factory(BoxType1, fields = ('tirazh', 'box_size'))
+
+        # formset = ProductFormSet(request.POST)
+        # form = ProductFormCommon()
+
+        print(form.errors)
+
         # save the data and after fetch the object in instance
+        # if form.is_valid():
         if form.is_valid():
+
+            print("FORM is valid")
 
             # старое
             # instance = form.save()
             # # serialize in new friend object in json
             # ser_instance = serializers.serialize('json', [ instance, ])
 
-            print(form.cleaned_data['box_size'])
+            print(form.cleaned_data)
+
+            # print(form.cleaned_data['box_size'])
             #print(form.cleaned_data['dob'])
-            print(form.cleaned_data['tirazh'])
+            # print(form.cleaned_data['tirazh'])
             #print(form.cleaned_data['name'])
             data = form.cleaned_data
 
-            # product = Product.objects.get(id =1).update(box_size=form.data['box_size'], tirazh= data['tirazh'])
-            try:
-                # product = Product.objects.get(id =1)
-                product = Product.objects.first()
-                print(product)
-                if product == None:
-                    product = Product.objects.create(id = 1, name = "default_name", slug='default', price =10, tirazh =10, box_size = '50х50х35')
+            print(form.data['box_size'])
+            print(form.data['product_id'])
+
+            # # product = Product.objects.get(id =1).update(box_size=form.data['box_size'], tirazh= data['tirazh'])
+            # try:
+            #     # product = Product.objects.get(id =1)
+            #     product = Product.objects.first()
+            #     print(product)
+            #     if product == None:
+            #         product = Product.objects.create(id = 1, name = "default_name", slug='default', price =10, tirazh =10, box_size = '50х50х35')
 
 
 
-            # except Exception as e:
-            # except ObjectDoesNotExist:
-            # except products.models.Product.DoesNotExist:
-            except Product.DoesNotExist:
-                print('11111111111111')
-                product = Product.objects.create(id = 1, name = "default_name", slug='default', price =10, tirazh =10, box_size = '50х50х35')
-                print(product)
-                # product.save()
+            # # except Exception as e:
+            # # except ObjectDoesNotExist:
+            # # except products.models.Product.DoesNotExist:
+            # except Product.DoesNotExist:
+            #     print('11111111111111')
+            #     product = Product.objects.create(id = 1, name = "default_name", slug='default', price =10, tirazh =10, box_size = '50х50х35')
+            #     print(product)
+            #     # product.save()
 
            
+            product_qs = Product.objects.filter(id = form.data['product_id'])
 
+            # print(product)
+            # print(product[0])
+
+            product = product_qs[0]
+            print(type(product))
+            # print(type(product))
+
+            print('----------')
 
             product.box_size=form.data['box_size']
             product.tirazh= data['tirazh']
@@ -235,6 +267,7 @@ def postProduct(request):
             # MyModel.objects.filter(field1='Computer').update(field2='cool')
             return JsonResponse({"instance": ser_instance}, status=200)
         else:
+            print("FORM is INvalid")
             # some form errors occured.
             return JsonResponse({"error": form.errors}, status=400)
 

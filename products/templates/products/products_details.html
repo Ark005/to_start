@@ -144,6 +144,12 @@
             
             </div>
 
+            <!-- <div class="form-group col-4"> -->
+                <!-- <label class="col-12">{{ field.label }}</label> -->
+                <input type="hidden" id="custId" name="product_id" value="{{ product.id }}">
+            
+            <!-- </div> -->
+
           
 
             {% endfor %}
@@ -253,7 +259,6 @@
                     $("#my_products tbody").prepend(
                         `<tr>
                         <td>${fields["box_size"]||""}</td>
-                        <td>${fields["price"]||""}</td>
                         <td>${fields["tirazh"]||""}</td>
                         
                         </tr>`
@@ -265,6 +270,8 @@
                 }
             })
         })
+
+        // <td>${fields["price"]||""}</td>
 
         /*
         On focus out on input nickname,
