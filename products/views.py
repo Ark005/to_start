@@ -338,10 +338,17 @@ def get_products(request, category, subcategory):
 def products_by_category(request, category):
     print("category", category)
 
+    # product_list = Product.objects.all()
     product_list  = Product.objects.filter(category = category)
+    product_filter = ProductFilter(request.GET, queryset=product_list)
+
+
+
+    
     # product_filter = ProductFilter(request.GET, queryset=product_list)
 
-    return render(request, 'products/category_products.html', {'products': product_list})
+    return render(request, 'products/category_products.html', {'filter': product_filter})
+    # return render(request, 'products/category_products.html', {'products': product_list, 'filter': product_filter})
 
 
 

@@ -125,7 +125,8 @@ class  Product(PolymorphicModel):
         return "{0:.2f}".format(round(a,0))
 
 
-    def ret(request):
+    def ret(self):
+        print(self.tirazh)
         all_result =Product.objects.all()
         result_one = all_result.filter(box_size ='50х50х35')
         result_two = all_result.filter(box_size ='60х60х40')
