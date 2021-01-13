@@ -11,9 +11,10 @@
       <th scope="col">№</th>     
       <th scope="col">Наименование продукта</th>
       <th scope="col">Размер изделия</th>
+      <th scope="col">Дата изготовления</th>
       <th scope="col">Тираж</th>
-      <th scope="col">Дата</th>
       <th scope="col">Цена</th>
+      <th scope="col">Убрать товар из корзины</th>
     </tr>
   </thead>
   <tbody>
@@ -22,21 +23,36 @@
       <th scope="row">{{ forloop.counter }}</th>
       <td>{{ cart.item.name }}</td>
       <td>{{ cart.item.box_size}}</td
-        <td>
+      <td>
+      <td> {{ cart.item.timeplus}} </td>
+      
       <td>{{ cart.item.tirazh}} </td>
-      <td>{{ cart.item.timeplus}} </td>
-      <td>₽{{ cart.get_total }}</td>
+    
+      <!--<td>₽{{ cart.get_total }}</td>-->
+      <td>₽{{ cart.item.calc }}</td>
+      <td>
+        <a class="mr-2" href="{% url 'mainapp:decrease-cart' cart.item.slug %}"><span class="badge badge-light"><i class="fas fa-minus"></i></span></a>
+      {{ cart.quantity }}
+     <!-- <a class="ml-2" href="{% url 'mainapp:cart' cart.item.slug %}" ><span class="badge badge-light"><i class="fas fa-plus"></i></span></a> -->
+      </td>
+
+
+
+
+
     </tr>
 	{% endfor %}
     <tr>
       <th scope="row"></th> 
       <td colspan="2">Total</td>
       <td>₽{{ order.get_totals| floatformat:2 }}</td>  
+      <td>₽{{ product.calc| floatformat:2 }}</td> 
     </tr>
     <tr>
       <th scope="row"></th>
       <td colspan="3" class="text-right ">
-        <a href="{% url 'mainapp:home' %}" class="btn btn-warning mr-4" >Продолжить покупки</a>
+       <!-- <a href="{% url 'mainapp:home' %}" class="btn btn-warning mr-4" >Продолжить покупки</a>-->
+       <a href="/" class="btn btn-warning mr-4" >Продолжить покупки</a>
         <a href="{% url 'checkout:index' %}" class="btn btn-success mr-4">Перейти к оформлению</a>
       </td>
     </tr>

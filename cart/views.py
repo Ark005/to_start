@@ -22,17 +22,17 @@ def add_to_cart(request, slug):
         if order.orderitems.filter(item__slug=item.slug).exists():
             order_item.quantity += 1
             order_item.save()
-            messages.info(request, f"{item.name} quantity has updated.")
+            messages.info(request, f"{item.name} тираж изменён")
             return redirect("mainapp:cart-home")
         else:
             order.orderitems.add(order_item)
-            messages.info(request, f"{item.name} has added to your cart.")
+            messages.info(request, f"{item.name} товар добавлен в вашу корзину")
             return redirect("mainapp:cart-home")
     else:
         order = Order.objects.create(
             user=request.user)
         order.orderitems.add(order_item)
-        messages.info(request, f"{item.name} has added to your cart.")
+        messages.info(request, f"{item.name} товар добавлен в вашу корзину")
         return redirect("mainapp:cart-home")
 
 
@@ -64,13 +64,13 @@ def remove_from_cart(request, slug):
                 user=request.user,
             )[0]
             order.orderitems.remove(order_item)
-            messages.warning(request, "This item was removed from your cart.")
+            messages.warning(request, "Этот товар был удаллён из корзины.")
             return redirect("mainapp:home")
         else:
-            messages.warning(request, "This item was not in your cart")
+            messages.warning(request, "Этого товара не было в вашей корзине")
             return redirect("mainapp:home")
     else:
-        messages.warning(request, "You do not have an active order")
+        messages.warning(request, "У вас нет активного заказа")
         return redirect("mainapp:home")
 
 
@@ -88,11 +88,11 @@ def CartView(request):
             order = orders[0]
             return render(request, 'cart/home.html', {"carts": carts, 'order': order})
         else:
-            messages.warning(request, "You do not have any item in your Cart")
+            messages.warning(request, "У вас нет никакого товара в вашей корзине")
             return redirect("mainapp:home")
 		
     else:
-        messages.warning(request, "You do not have any item in your Cart")
+        messages.warning(request, "У вас нет никакого товара в вашей корзине")
         return redirect("mainapp:home")
 
 
@@ -119,12 +119,12 @@ def decreaseCart(request, slug):
             else:
                 order.orderitems.remove(order_item)
                 order_item.delete()
-                messages.warning(request, f"{item.name} has removed from your cart.")
-            messages.info(request, f"{item.name} quantity has updated.")
+                messages.warning(request, f"{item.name} товар удален из корзины.")
+            messages.info(request, f"{item.name} количество обновилось.")
             return redirect("mainapp:cart-home")
         else:
-            messages.info(request, f"{item.name} quantity has updated.")
+            messages.info(request, f"{item.name} количество обновилось.")
             return redirect("mainapp:cart-home")
     else:
-        messages.info(request, "You do not have an active order")
+        messages.info(request, "У вас нет активного заказа")
         return redirect("mainapp:cart-home")

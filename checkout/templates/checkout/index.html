@@ -17,19 +17,21 @@
        </div>
      </div>
       {% if savedAddress %}
-      <h4>Saved Address</h4>
+      <h4>Сохраненный Адрес</h4>
       <div class="card mb-5" style="height: auto">
         <div class="card-body">
-          <p><b>Aдрес :</b> {{ savedAddress.address }}</p>
-          <p><b>Город :</b> {{ savedAddress.city }}</p>
-          <p><b>Почтовый код :</b> {{ savedAddress.zipcode }}</p>
-          <p><b>Ориентир :</b> {{ savedAddress.landmark }}</p>
+          
+          <p><b>адрес :</b> {{ savedAddress.address }}</p>
+          <p><b>почтовый индекс :</b> {{ savedAddress.zipcode }}</p>
+          <p><b>номер телефона :</b> {{ savedAddress.cellular }}</p>
+          <p><b>ориентир :</b> {{ savedAddress.landmark }}</p>
         </div>
         <div class="card-body">
-           <a href="{% url 'checkout:payment' %}" class="btn btn-primary float-right">Перейдите к оформлению заказа с сохраненным адресом</a>
+          <!-- <a href="{% url 'checkout:payment' %}" class="btn btn-primary float-right">Перейдите к оформлению заказа с сохраненным адресом</a>-->
         </div>
       </div>
       {% endif %}
+      
     </div>
     <div class="col-md-3">
       <div class="card" style="height: auto">

@@ -63,10 +63,7 @@ class  Product(PolymorphicModel):
                 ('270х220х70', '270х220х70'),
                 )
     
-    # BOX_SIZES = (
-    #             ('270х220х70', '270х220х70'),
-    #             )
-
+   
 
     # class BOX_SIZES(models.TextChoices):
     #     size1 = '270х220х70', _('270х220х70')
@@ -95,12 +92,15 @@ class  Product(PolymorphicModel):
     price = models.FloatField(default = None, null=True)
     tirazh = models.IntegerField(null=False)
     t = models.IntegerField(null=True)
+    k = models.IntegerField(null=True)
     #t =  models.DateField(auto_now=False, auto_now_add= False)
     box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='80х80х40')
     # box_size = models.CharField(max_length=48, choices=BOX_SIZES.choices, default='80х80х40')
 
+    def koef(self):
 
-
+         k = self.k
+         kprice = k * price()
 
     def timeplus(self):
 
@@ -123,10 +123,12 @@ class  Product(PolymorphicModel):
         a =(176.3969+17367.3469/self.tirazh)*self.tirazh
         
         return "{0:.2f}".format(round(a,0))
+   
 
+       
 
-    def ret(self):
-        print(self.tirazh)
+    def calc(self):
+        tirazh = self.tirazh
         all_result =Product.objects.all()
         result_one = all_result.filter(box_size ='50х50х35')
         result_two = all_result.filter(box_size ='60х60х40')
@@ -137,9 +139,12 @@ class  Product(PolymorphicModel):
         result_seven = all_result.filter(box_size ='270х220х70')
 
         if result_one:
-            return  3935428.2860 # 50х50х35 крышка-дно, сборка на автомат от 2500 шт
+            a = 39.35428* self.tirazh ** 0.2860
+            #return  3935428.2860 + self.tirazh # 50х50х35 крышка-дно, сборка на автомат от 2500 шт
+            return "{0:.0f}".format(round(a,0)) # 50х50х35 крышка-дно, сборка на автомат от 2500 шт
         elif  result_two:
-            return 2560787.2222  # 60x60x40 крышка-дно, сборка на автомат от 2500 шт
+            a = 2560787.2222
+            return  "{0:.0f}".format(round(a,0)) # 60x60x40 крышка-дно, сборка на автомат от 2500 шт
         elif  result_three:
             return 2230289.1977  # 80х80х40 крышка-дно, сборка на автомат от 2500 шт  
 
@@ -193,7 +198,7 @@ class BoxType2(Product):
             ('60х60х40', '60х60х40'),
             )
 
-        self._meta.get_field('box_size').default  = '240х185х120'
+        self._meta.get_field('box_size').default  = '270х220х70'
         self._meta.get_field('box_size').choices = BOX_SIZES
         super(BoxType2, self).__init__(*args, **kwargs)
     
@@ -222,6 +227,7 @@ class Payment(models.Model):
 
 
 '''
+"""
 
 class Friend(models.Model):
 
@@ -242,6 +248,7 @@ class Friend(models.Model):
             return cls.objects.get()
         except cls.DoesNotExist:
             return cls()
+"""
 
 
 

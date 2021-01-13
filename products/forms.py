@@ -1,4 +1,4 @@
-from .models import Friend, SubCategory, Product, BoxType1, BoxType2
+from .models import  SubCategory, Product, BoxType1, BoxType2
 from django import forms
 import datetime
 
@@ -8,8 +8,11 @@ ProductFormSet = polymorphic_modelformset_factory(Product, formset_children=(
     PolymorphicFormSetChild(BoxType1),
     PolymorphicFormSetChild(BoxType2),
 ), fields = ('tirazh', 'box_size'))
+labels = {
+           'tirazh': ('тираж'),'box_size': ('размер')
+       }
 
-
+"""
 class FriendForm(forms.ModelForm):
     ## change the widget of the date field.
     dob = forms.DateField(
@@ -32,7 +35,7 @@ class FriendForm(forms.ModelForm):
         #fields = ("__all__")
         fields = ('dob','tirazh')
 
-
+"""
 class ChoiceFieldNoValidation(forms.ChoiceField):
     def validate(self, value):
         pass
@@ -64,6 +67,7 @@ class ProductForm(forms.ModelForm):
             self.fields[tirazh].widget.attrs.update({
                 'class': 'form-control',
             })
+        
 
 
 
@@ -74,9 +78,11 @@ class ProductForm(forms.ModelForm):
         model = Product
         #fields = ("__all__")
         # fields = ('tirazh', 'box_size', 'price')
-        fields = ('tirazh', 'box_size')
+        fields = ('tirazh', 'box_size')     
         exclude = ('box_size',)
-
+        labels = {
+           'tirazh': ('тираж'),'box_size': ('размер')
+       }
 
 
 class SubproductForm(forms.Form):

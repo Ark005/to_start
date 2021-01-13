@@ -4,7 +4,7 @@ from django_filters.filters import RangeFilter
 
 
 class ProductFilter(django_filters.FilterSet):
-    name = django_filters.CharFilter(lookup_expr='icontains')
+    name = django_filters.CharFilter(lookup_expr='contains')
     #price = RangeFilter()
 
 
@@ -13,10 +13,16 @@ class ProductFilter(django_filters.FilterSet):
         fields = ['name']
 
 class CategoryFilter(django_filters.FilterSet):
-    name = django_filters.CharFilter(lookup_expr='icontains')
+    name = django_filters.CharFilter(lookup_expr='contains')
     #price = RangeFilter()
+    labels = {
+           'contains': ('содержит')
+       }
 
 
     class Meta:
         model = Category
         fields = ['name']
+        labels = {
+           'name': ('название')
+}

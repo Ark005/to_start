@@ -4,12 +4,12 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .filters import ProductFilter, CategoryFilter
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin  
 
 from django.http import JsonResponse
 from django.core import serializers
-from .forms import FriendForm, ProductForm
-from .models import Friend, Product, Category, SubCategory
+from .forms import ProductForm
+from .models import  Product, Category, SubCategory
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
@@ -31,7 +31,6 @@ def home(request):
     category_list = Category.objects.all()
     category_filter = CategoryFilter(request.GET, queryset=category_list)
     return render(request, 'products/home.html', {'filter': category_filter})
-
 
 
 class ProductDetail(LoginRequiredMixin, DetailView):

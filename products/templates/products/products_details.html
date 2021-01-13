@@ -123,10 +123,11 @@
     
     
         <span class="price h3 text-warning">  
-            <span class="num">₽<span<p id="result"><p>  </span>
+        <span class="num">₽<span<p id="result"><p>  </span>
+           
                
         </span> 
-            
+        
     </td>   
 
     <h3 class="title mb-3">{{ product.name }}</h3>
@@ -173,7 +174,7 @@
         <thead>
             <tr>
                 <th>Размер(Д х Ш х В)</th>
-                <th>Отгрузка</th>
+                <th>Дата изготовления</th>
                 <th>Тираж(шт.)</th>
                 
                 
@@ -187,6 +188,7 @@
         <tr>
             <td>{{product.box_size}}</td>
             <td>{{product.timeplus}}</td>
+          
             <td>
 
                 <p id="result"></p>
@@ -198,14 +200,14 @@
                     if (x < 1000) {
                     x = 1000;
                     }
-                    var num= {{product.ret}} 
+                    var num= {{product.calc}} 
                     var r = (Math.floor(num * 1) / 1) // первая часть искомого числа
                     var ost = num - r
                     var r1 = r * 0.0001 // первая часть искомого числа, с учетом знаков после запятой
                     var st = x ** (ost*(-1)) // тираж в искомой степени
                     var e = (r1 * st)
                     var y = Math.round(e)
-                    var res = x*y; }
+                    var res = e*x; }
                     document.getElementById("result").innerHTML = res;
                 </script>                
             </td>
