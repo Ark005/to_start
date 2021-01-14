@@ -12,30 +12,7 @@ labels = {
            'tirazh': ('тираж'),'box_size': ('размер')
        }
 
-"""
-class FriendForm(forms.ModelForm):
-    ## change the widget of the date field.
-    dob = forms.DateField(
-        label='What is your birth date?', 
-        # change the range of the years from 1980 to currentYear - 5
-        widget=forms.SelectDateWidget(years=range(1980, datetime.date.today().year-5))
-    )
-    
-    def __init__(self, *args, **kwargs):
-        super(FriendForm, self).__init__(*args, **kwargs)
-        ## add a "form-control" class to each form input
-        ## for enabling bootstrap
-        for name in self.fields.keys():
-            self.fields[name].widget.attrs.update({
-                'class': 'form-control',
-            })
 
-    class Meta:
-        model = Friend
-        #fields = ("__all__")
-        fields = ('dob','tirazh')
-
-"""
 class ChoiceFieldNoValidation(forms.ChoiceField):
     def validate(self, value):
         pass
@@ -43,11 +20,8 @@ class ChoiceFieldNoValidation(forms.ChoiceField):
 class ProductFormCommon(forms.Form):
     tirazh = forms.IntegerField()
     box_size = ChoiceFieldNoValidation(choices=[('240х185х120', '240х185х120'), ('270х220х70', '270х220х70')])
-
     # box_size = forms.CharField(max_length=48)
-    
-
-
+   
 
 class ProductForm(forms.ModelForm):
     
@@ -70,20 +44,16 @@ class ProductForm(forms.ModelForm):
         
 
 
-
         # отключить валидацию
         # self.fields['box_size'].validators = []
 
     class Meta:
         model = Product
         #fields = ("__all__")
-        # fields = ('tirazh', 'box_size', 'price')
+        #fields = ('tirazh', 'box_size', 'price')
         fields = ('tirazh', 'box_size')     
-        exclude = ('box_size',)
-        labels = {
-           'tirazh': ('тираж'),'box_size': ('размер')
-       }
-
+        #exclude = ('box_size',)
+       
 
 class SubproductForm(forms.Form):
     name = forms.ModelChoiceField(queryset=SubCategory.objects.all())

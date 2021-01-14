@@ -8,6 +8,7 @@ class Category(models.Model):
     name = models.CharField(max_length=300)
     primaryCategory = models.BooleanField(default=False)
     mainimage = models.ImageField(upload_to='products/', blank=True)
+    preview_text = models.TextField(max_length= 60 , verbose_name='Preview Text', blank=True, null=True)
     
 
     def __str__(self):
@@ -20,6 +21,7 @@ class SubCategory(models.Model):
     name = models.CharField(max_length=300)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     mainimage = models.ImageField(upload_to='products/', blank=True)
+    preview_text = models.TextField(max_length= 60 , verbose_name='Preview Text', blank=True, null=True)
     
     def __str__(self):
         return self.name
@@ -95,6 +97,8 @@ class  Product(PolymorphicModel):
     k = models.IntegerField(null=True)
     #t =  models.DateField(auto_now=False, auto_now_add= False)
     box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='80х80х40')
+    
+
     # box_size = models.CharField(max_length=48, choices=BOX_SIZES.choices, default='80х80х40')
 
     def koef(self):

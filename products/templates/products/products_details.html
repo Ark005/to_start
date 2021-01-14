@@ -123,7 +123,8 @@
     
     
         <span class="price h3 text-warning">  
-        <span class="num">₽<span<p id="result"><p>  </span>
+       <!-- <span class="num">₽<span<p id="result"><p>  </span> -->
+        <span class="num">₽<span<p>{{product.calc}}</p>  </span>
            
                
         </span> 
@@ -183,35 +184,14 @@
         <tbody>
            
         
+
+               
+          
   
         
         <tr>
             <td>{{product.box_size}}</td>
             <td>{{product.timeplus}}</td>
-          
-            <td>
-
-                <p id="result"></p>
-                <script>                
-                 {
-                    
-                    
-                    var x = {{product.tirazh}} ;
-                    if (x < 1000) {
-                    x = 1000;
-                    }
-                    var num= {{product.calc}} 
-                    var r = (Math.floor(num * 1) / 1) // первая часть искомого числа
-                    var ost = num - r
-                    var r1 = r * 0.0001 // первая часть искомого числа, с учетом знаков после запятой
-                    var st = x ** (ost*(-1)) // тираж в искомой степени
-                    var e = (r1 * st)
-                    var y = Math.round(e)
-                    var res = e*x; }
-                    document.getElementById("result").innerHTML = res;
-                </script>                
-            </td>
-            
             <td>{{product.tirazh}}</td>
            
             
@@ -306,3 +286,30 @@
     })
 </script>
 {% endblock javascript %}
+
+
+
+
+
+
+
+
+<p id="result"></p>
+<script>                
+ {
+    
+    
+    var x = {{product.tirazh}} ;
+    if (x < 1000) {
+    x = 1000;
+    }
+    var num= {{product.calc}} 
+    var r = (Math.floor(num * 1) / 1) // первая часть искомого числа
+    var ost = num - r
+    var r1 = r * 0.0001 // первая часть искомого числа, с учетом знаков после запятой
+    var st = x ** (ost*(-1)) // тираж в искомой степени
+    var e = (r1 * st)
+    var y = Math.round(e)
+    var res = e*x; }
+    document.getElementById("result").innerHTML = res;
+</script> 

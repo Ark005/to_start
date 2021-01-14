@@ -44,8 +44,8 @@
 	{% endfor %}
     <tr>
       <th scope="row"></th> 
-      <td colspan="2">Total</td>
-      <td>₽{{ order.get_totals| floatformat:2 }}</td>  
+      <td colspan="2">Итого</td>
+     <!--  <td>₽{{ order.get_totals| floatformat:2 }}</td>  -->
       <td>₽{{ product.calc| floatformat:2 }}</td> 
     </tr>
     <tr>
