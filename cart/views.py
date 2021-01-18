@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
-from .models import Cart, Order
+from .models import Cart, Order, File
 from products.models import Product
 
 
@@ -128,3 +128,49 @@ def decreaseCart(request, slug):
     else:
         messages.info(request, "У вас нет активного заказа")
         return redirect("mainapp:cart-home")
+
+
+from .forms import FileForm
+from django.contrib.auth import get_user_model
+# Get the user model
+User = get_user_model()
+
+def upload_file(request):
+    if request.method == 'POST':
+        # form = DocumentForm(request.POST, request.FILES)
+        form = FileForm(request.POST, request.FILES)
+        # user = User.objects.get(id=request.user.id)
+        # print(type(user))
+        # print(user)
+        # form = FileForm(request.FILES, request.user)
+        # form = FileForm(request.FILES, user)
+        # print(request.user)
+        # print(type(request.user))
+        # print(request.user.id)
+        if form.is_valid():
+            print("form ok")
+            file = File(file = request.FILES["file"], user= request.user)
+            file.save()
+            # form.save()
+            # return redirect('home')
+            return redirect('mainapp:cart-home')
+            
+    else:
+        form = FileForm()
+    return render(request, 'cart/model_form_upload.html', {
+        'form': form
+    })
+
+
+
+# from django.http import HttpResponse
+# from wsgiref.util import FileWrapper
+
+# @login_required
+# def download_pdf(request):
+#     filename = 'whatever_in_absolute_path__or_not.pdf'
+#     content = FileWrapper(filename)
+#     response = HttpResponse(content, content_type='application/pdf')
+#     response['Content-Length'] = os.path.getsize(filename)
+#     response['Content-Disposition'] = 'attachment; filename=%s' % 'whatever_name_will_appear_in_download.pdf'
+#     return response

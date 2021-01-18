@@ -8,9 +8,7 @@ ProductFormSet = polymorphic_modelformset_factory(Product, formset_children=(
     PolymorphicFormSetChild(BoxType1),
     PolymorphicFormSetChild(BoxType2),
 ), fields = ('tirazh', 'box_size'))
-labels = {
-           'tirazh': ('тираж'),'box_size': ('размер')
-       }
+
 
 
 class ChoiceFieldNoValidation(forms.ChoiceField):
@@ -53,7 +51,7 @@ class ProductForm(forms.ModelForm):
         #fields = ('tirazh', 'box_size', 'price')
         fields = ('tirazh', 'box_size')     
         #exclude = ('box_size',)
-       
+        
 
 class SubproductForm(forms.Form):
     name = forms.ModelChoiceField(queryset=SubCategory.objects.all())

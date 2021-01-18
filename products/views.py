@@ -138,7 +138,7 @@ def new_indexView(request, slug):
     try:
         product = Product.objects.get(slug = slug)
         print("тип продукта", type(product))
-        form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'))
+        form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'), labels = {'tirazh':'тираж', 'box_size':'размер коробки'})
     except ObjectDoesNotExist:
         product = None
         form = None

@@ -231,28 +231,14 @@ class Payment(models.Model):
 
 
 '''
-"""
-
-class Friend(models.Model):
-
-    dob = models.DateField(auto_now=False, auto_now_add=False)
-    tirazh = models.IntegerField(null=False)
-
-    def __str__(self):
-        return self.nick_name
-
-
-    def save(self, *args, **kwargs):
-        self.__class__.objects.exclude(id=self.id).delete()
-        super(Friend, self).save(*args, **kwargs)
+class Post(models.Model):
+    title = models.TextField()
+    cover = models.ImageField(upload_to='client_files/')
  
-    @classmethod
-    def load(cls):
-        try:
-            return cls.objects.get()
-        except cls.DoesNotExist:
-            return cls()
-"""
+    def __str__(self):
+        return self.title
+
+
 
 
 

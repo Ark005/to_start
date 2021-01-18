@@ -43,3 +43,27 @@ class Order(models.Model):
             total += order_item.get_total()
         
         return total
+
+from django.utils import timezone
+tz = timezone.get_default_timezone()
+
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'client_files/user_{0}/{1}'.format(instance.user.id, filename)
+
+
+class File(models.Model):
+    # file = models.ImageField(upload_to='media/client_files')
+    # file = models.ImageField(upload_to=user_directory_path)
+    file = models.FileField(upload_to=user_directory_path)
+    # file = models.ImageField(upload_to='client_files/')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    # created = models.DateTimeField()
+    # created_time = models.DateTimeField('Created Time', auto_now_add=True, null=True)
+    created = models.DateTimeField('Created Time', auto_now_add=True)
+    def __str__(self):
+        return 'Заявка от {}'.format(self.created.astimezone(tz).strftime('%d.%m.%Y %H:%M'))
+
+    # start = models.DateTimeField('Начало приёма') 
+    # end = models.DateTimeField('Конец приёма', null=True, blank=True)

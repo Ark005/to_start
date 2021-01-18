@@ -2,24 +2,23 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-  <a class="navbar-brand" href="/">005 PRINT</a>
+  <a class="navbar-brand" href="/"><p style="color:rgb(24, 136, 44)">005.ru</p></a>
+ 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <li {% if request.path == 'contact' %}class="nav-item active"{% else %}class="nav-item"{% endif %}>
-        <a class="nav-link" href="#">Men <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">О нас <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Women</a>
+        <a class="nav-link" href="#">как работать на сайте</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Electronics</a>
+        <a class="nav-link" href="#">Производство</a>
       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#">Electronics</a>
-      </li>
+      
       {% if request.user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'mainapp:cart-home' %}">
@@ -29,6 +28,9 @@
       </li>
        <li class="nav-item">
         
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">+7(925)740-3893</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,5 +51,6 @@
     </ul>
   </div>
   </div>
+  
 </nav>
 

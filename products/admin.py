@@ -1,11 +1,13 @@
 from django.contrib import admin
 
 from polymorphic.admin import PolymorphicParentModelAdmin, PolymorphicChildModelAdmin, PolymorphicChildModelFilter
-from products.models import Category, Product, SubCategory, BoxType1, BoxType2
+from products.models import Category, Product, SubCategory, BoxType1, BoxType2,Post
 
 admin.site.register(Category)
 # admin.site.register(Product)
 admin.site.register(SubCategory)
+ 
+admin.site.register(Post)
 
 # нужен чтобы наследовать дочерние модели
 class ModelAChildAdmin(PolymorphicChildModelAdmin):

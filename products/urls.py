@@ -1,5 +1,5 @@
 from django.urls import path
-from cart.views import add_to_cart, remove_from_cart, CartView, decreaseCart
+from cart.views import add_to_cart, remove_from_cart, CartView, decreaseCart, upload_file
 from . views import home, ProductDetail, Home, postFriend, \
 checkNickName,indexView, show_subcategory, get_subcategory, \
 postProduct, get_products, new_indexView, products_by_category
@@ -37,6 +37,7 @@ urlpatterns = [
     path('cart/<slug>', add_to_cart, name='cart'),
     path('decrease-cart/<slug>', decreaseCart, name='decrease-cart'),
     path('remove/<slug>', remove_from_cart, name='remove-cart'),
+    path('upload_file/', upload_file, name='upload_file'),
 ]
 
 
