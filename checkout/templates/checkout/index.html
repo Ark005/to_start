@@ -28,7 +28,10 @@
           <p><b>ориентир :</b> {{ savedAddress.landmark }}</p>
         </div>
         <div class="card-body">
-        <a href="{% url 'checkout:payment' %}" class="btn btn-primary float-right">Договор-оферта</a>
+        <!-- Здесь отправка email -->
+        <!-- <a href="{% url 'checkout:payment' %}" class="btn btn-primary float-right">Договор-оферта</a> -->
+        <a href="{% url 'checkout:send_email' %}" class="btn btn-primary float-right">Договор-оферта</a>
+
         </div>
       </div>
       {% endif %}
