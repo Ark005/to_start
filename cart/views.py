@@ -135,18 +135,13 @@ from django.contrib.auth import get_user_model
 # Get the user model
 User = get_user_model()
 
+# @login_required
 def upload_file(request):
     if request.method == 'POST':
-        # form = DocumentForm(request.POST, request.FILES)
         form = FileForm(request.POST, request.FILES)
         # user = User.objects.get(id=request.user.id)
-        # print(type(user))
-        # print(user)
         # form = FileForm(request.FILES, request.user)
         # form = FileForm(request.FILES, user)
-        # print(request.user)
-        # print(type(request.user))
-        # print(request.user.id)
         if form.is_valid():
             print("form ok")
             file = File(file = request.FILES["file"], user= request.user)

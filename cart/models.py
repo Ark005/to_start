@@ -49,7 +49,8 @@ tz = timezone.get_default_timezone()
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'client_files/user_{0}/{1}'.format(instance.user.id, filename)
+    # return 'client_files/user_{0}/%Y_%m_%d/{1}/'.format(instance.user.id, filename)
+    return 'client_files/user_{0}/{1}/'.format(instance.user.id, filename)
 
 
 class File(models.Model):
