@@ -165,7 +165,11 @@ STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
+
+# Сюда поставить пароль и почту
 EMAIL_HOST_USER = 'petr@gmail.com'
 EMAIL_HOST_PASSWORD = ''
+
+
 DEFAULT_FROM_EMAIL = 'Arcadiy'
 DEFAULT_TO_EMAIL = '782732713787@ckjskdcdfnkdsf.com'

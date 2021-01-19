@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from polymorphic.admin import PolymorphicParentModelAdmin, PolymorphicChildModelAdmin, PolymorphicChildModelFilter
-from products.models import Category, Product, SubCategory, BoxType1, BoxType2,Post
+from products.models import Category, Product, SubCategory, BoxType1, BoxType2,Post,FolderType1
 
 admin.site.register(Category)
 # admin.site.register(Product)
@@ -44,10 +44,16 @@ class ModelBAdmin(ModelAChildAdmin):
     base_model = BoxType2  # Explicitly set here!
     # define custom features here
 
+
+@admin.register(FolderType1)
+class ModelBAdmin(ModelAChildAdmin):
+    base_model = FolderType1  # Explicitly set here!
+    # define custom features here
+
 # Базовая модель
 @admin.register(Product) # Декоратор для регистрации
 class ProductParentAdmin(PolymorphicParentModelAdmin):
     """ The parent model admin """
     base_model = Product  # Optional, explicitly set here.
-    child_models = (BoxType2, BoxType1)
+    child_models = (BoxType2, BoxType1,FolderType1)
     list_filter = (PolymorphicChildModelFilter,)  # This is optional

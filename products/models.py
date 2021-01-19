@@ -96,7 +96,7 @@ class  Product(PolymorphicModel):
     t = models.IntegerField(null=True)
     k = models.IntegerField(null=True)
     #t =  models.DateField(auto_now=False, auto_now_add= False)
-    box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='80х80х40')
+    box_size = models.CharField(max_length=50, choices=BOX_SIZES,default='80х80х40')
     
 
     # box_size = models.CharField(max_length=48, choices=BOX_SIZES.choices, default='80х80х40')
@@ -141,6 +141,8 @@ class  Product(PolymorphicModel):
         result_five = all_result.filter(box_size ='80х80х40-P')
         result_six = all_result.filter(box_size ='240х185х120')
         result_seven = all_result.filter(box_size ='270х220х70')
+        result_eight = all_result.filter(box_size ='корешок 25-40 круглый механизм 7200')
+        result_nine = all_result.filter(box_size ='корешок 45-65 д-образный механизм')
 
         if result_one:
             a = 39.35428* self.tirazh ** 0.2860
@@ -163,6 +165,15 @@ class  Product(PolymorphicModel):
         elif  result_seven:
             return 7799003.1669 # размер 270х220х70 мм ручная сборка y=779.9003x−0.1669
 
+        elif  result_eight:
+            a = (59.35428* self.tirazh) ** 0.2860
+       
+            return "{0:.0f}".format(round(a,0))
+        elif  result_nine:
+
+            a = (39.35428* self.tirazh) ** 0.2860
+
+            return "{0:.0f}".format(round(a,0))
         else:
             return 0
 
@@ -214,6 +225,20 @@ class BoxType2(Product):
     # class BOX_SIZES(models.TextChoices):
     #     size1 = '50х50х35', _('50х50х35')
     # box_size = models.CharField(max_length=20, choices=BOX_SIZES,default='50х50х35')
+
+class FolderType1(Product):
+    """docstring for BoxType1"""
+
+    def __init__(self, *args, **kwargs):
+        BOX_SIZES = (
+            ('корешок 25-40 круглый механизм 7200 ', 'корешок 25-40 круглый механизм 7200 '),
+            ('корешок 45-65 д-образный механизм ', 'корешок 45-65 д-образный механизм '),
+            )
+
+        self._meta.get_field('box_size').default  = 'корешок 25-40 круглый механизм 7200'
+        self._meta.get_field('box_size').choices = BOX_SIZES
+        super(FolderType1, self).__init__(*args, **kwargs)
+
 
 
 '''
