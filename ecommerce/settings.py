@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'sorl.thumbnail',
     # 'send_email.apps.SendEmailConfig',
 ]
 
@@ -173,3 +174,6 @@ EMAIL_HOST_PASSWORD = ''
 
 DEFAULT_FROM_EMAIL = 'Arcadiy'
 DEFAULT_TO_EMAIL = '782732713787@ckjskdcdfnkdsf.com'
+
+
+THUMBNAIL_DEBUG = True,

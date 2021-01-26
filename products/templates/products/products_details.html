@@ -123,7 +123,7 @@
 {% block javascript %}
 <script>
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         /*
             On submiting the form, send the POST ajax
             request to server and after successfull submission
@@ -136,9 +136,15 @@
             var serializedData = $(this).serialize();
             // make POST ajax call
             $.ajax({
+                // POST метод
                 type: 'POST',
                 url: "{% url 'post_product' %}",
                 data: serializedData,
+                async: true,
+
+                timeout:20000,
+
+                // Функция вызываемая если запрос успешен
                 success: function (response) {
                     // on successfull creating object
                     // 1. clear the form.
@@ -157,8 +163,10 @@
                         </tr>`
                     )
                 },
+                // error вызывается, если запрос выполняется с ошибкой
                 error: function (response) {
                     // alert the error if any error occured
+                    alert('EERRRRRRRRRRRRRRRRRRRRRRRRRRR')
                     alert(response["responseJSON"]["error"]);
                 }
             })

@@ -8,13 +8,13 @@
         
 
 {% extends 'products/base.html' %}
-
+{% load thumbnail %}
 
 
 
 
 {% load crispy_forms_tags %}
-<div class="col-md-3">
+<div class="col-md-">
   <span class="icon"><i class="fa fa-search"></i></span>
   <form method="get">
     {{ filter.form| crispy }}
@@ -46,48 +46,80 @@ class= "btn btn-success btn-buy">
 </div> 
 
 
-  <div class="container my-5">
-    <h2 class="my-5">Категории продуктов</h2>
-    <div class="row"></div>
-    <div class="row">
-  
+  <!-- <div class="container my-5"> -->
+    <!-- <h2 class="my-5">Категории продуктов</h2> -->
+    <!-- <div class="row"></div> -->
+    <!-- <div class="row"> -->
+    <!-- <div class="row"></div> -->
+
+
+
+<div class="blog">
+ <div class="container">
+ <h2 class="text-center">Категории продуктов</h2>
+  <div class="row">
    
-		<div class="row"></div>
-			{% for product in filter.qs %}
-		  <div class="col-md-8 col-sm-12 col-lg-4">
-			<figure class="card card-product">
-				<div class="img-wrap"> 
-					<img src="media/{{ product.mainimage }}" style="width: 100%; height: 250px;">
-				</div>
-				<figcaption class="info-wrap">
-					<!-- Старый -->
-					<!-- <h6 class="title text-dots"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h6>-->
-					<!-- <p>Текст</p> -->
-<h6 class="title text-dots">{{ product.preview_text}}</a></h6>
-					<h6 class="title text-dots"><a href="products_by_category/{{ product.id }}">{{ product.name }}</a></h6>
-					
-					<!-- <h6 class="title text-dots"><a href="get_subcategory/{{ product.subcategory.id }}">{{ product.name }}</a></h6> -->
-         
-					<div class="action-wrap">
-						<!-- <a href="cart/{{ product.slug }}" class="btn btn-primary btn-sm"> Add to Cart </a>
-            			<a href="cart/" class="btn btn-primary btn-sm"> View Cart </a> -->
-<!--             <a href="remove/{{ product.slug }}" class="btn btn-danger btn-sm"> Remove</a>
- -->						<!-- price-wrap.// -->
-						 <div class="price-wrap h5">
-							<!-- <span class="price-new">руб. {{product.price}}</span>-->
-							<!-- <del class="price-old">руб. 1980</del>-->
-						</div> 
-					</div> <!-- action-wrap -->
-				</figcaption>
-			</figure> <!-- card // -->
-    </div> <!-- col // -->
+    <!-- <div class="card"> -->
+     <!-- <div class="card-img">
+      <img align="center" src="images/posts/polit.jpg" class="img-fluid">
+     </div> -->
+
+	{% for product in filter.qs %}
   
-      {% endfor %}
-		</div>
+  <!-- <div class="tile__body list-default__parent"> -->
+
+
+	<div class="col-md-4 col-lg-4 col-sm-12">
+
+	    <div class="card">
+	     <div class="card-img">
+	      <!-- <img align="center" src="{{ product.mainimage.url }}" class="img-fluid"> -->
+	      <!-- <img align="center" src="media/{{ product.mainimage }}" class="img-fluid"> -->
+      		<!-- { % thumbnail 'product.mainimage' "50" as im % } -->
+      		{% thumbnail product.mainimage "300" as im %}
+		        <img align="center" src="{{ im.url }}" alt="not found" class="img-fluid">
+		        <!-- { % empty % }
+		        <p>No image</p> -->
+			{% endthumbnail %}
+	     </div>
+
+	    <div class="card-body">
+	     <h4 class="card-title"><a href="products_by_category/{{ product.id }}">{{ product.name }}</a></h4>
+	      <p class="card-text">
+	       {{ product.preview_text}}
+	      </p>
+	     </div>
+	   <!--   <div class="card-footer">
+	      <a href="" class="card-link">Read more</a>
+	     </div> -->
+	    </div>
+	<!-- </div> -->
+
+  
+  </div>
+	   
+		
+			<!-- { % thumbnail "media/{{ product.mainimage }}" "300" as im % } -->
+
+
+	     <!-- </div> -->
+
+		  
+		{% endfor %}
+
+   </div>
+  </div>
+ </div>
+</div>
+</div>
+</div>
+<!-- </div> -->
+<!-- </div> -->
+<!-- 		</div>
 	</div>
   </div>
   </div>
- 
+  -->
   
   <div>
     <img src="/media/products/Q3.png" border="0"/>

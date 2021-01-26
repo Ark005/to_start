@@ -23,3 +23,4 @@ sqlparse==0.4.1
 stripe==2.55.0
 urllib3==1.25.11
 django-polymorphic==3.0.0
+sorl-thumbnail==12.7.0
