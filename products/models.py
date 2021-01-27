@@ -257,7 +257,113 @@ class FolderType2(Product):
         super(FolderType2, self).__init__(*args, **kwargs)
 
 
+# BOX_SIZES = (
+#                 ('50х50х35', '50х50х35'),
+#                 ('60х60х40', '60х60х40'),
+#                 ('60х60х40-P', '60х60х40-P'),
+#                 ('80х80х40', '80х80х40'),
+#                 ('80х80х40-P', '80х80х40-P'),
+#                 ('240х185х120', '240х185х120'),
+#                 ('270х220х70', '270х220х70'),
+#                 ('корешок 25-40 круглый механизм 7200', 'корешок 25-40 круглый механизм 7200'),
+#                 ('корешок 45-65 д-образный механизм', 'корешок 45-65 д-образный механизм'),
+#                 )
 
+
+
+# def get_box_sizes(indexes):
+#     for element in indexes:
+
+
+#     return BOX_SIZES    
+
+from django.core.validators import int_list_validator
+
+class Test(PolymorphicModel):
+    BOX_SIZES = (
+                ('50х50х35', '50х50х35'),
+                ('60х60х40', '60х60х40'),
+                ('60х60х40-P', '60х60х40-P'),
+                ('80х80х40', '80х80х40'),
+                ('80х80х40-P', '80х80х40-P'),
+                ('240х185х120', '240х185х120'),
+                ('270х220х70', '270х220х70'),
+                )
+
+
+    name = models.CharField(max_length=40)
+    # dob = models.DateField(verbose_name='Date of birth')
+    box_size = models.CharField(max_length=50, choices=BOX_SIZES,default='80х80х40')
+    # int_list = models.CharField(validators=int_list_validator)
+    int_list = models.CharField(validators=[int_list_validator], max_length=100)
+
+    # @property
+    # def age(self):
+    #     return timezone.now().year - self.dob.year
+    #     # return timezone.now().year - self.dob.year
+
+
+# class  
+
+# class  Product(PolymorphicModel):
+
+
+#     def __str__(self):
+#         return self.name
+
+
+#     def get_absolute_url(self):
+#         return reverse("mainapp:product", kwargs={
+#             'slug': self.slug
+#         })
+
+
+#     name = models.CharField(max_length=300, default = None, null=True)
+#     slug = models.SlugField(default = None, null=True)
+#     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default = None, null=True)
+#     category = models.ForeignKey(Category, on_delete=models.CASCADE, default = None, null=True)
+#     preview_text = models.TextField(max_length=200, verbose_name='Preview Text', blank=True, null=True)
+#     detail_text = models.TextField(max_length=1000, verbose_name='Detail Text', blank=True, null=True)
+#     price = models.FloatField(default = None, null=True)
+#     tirazh = models.IntegerField(null=False)
+#     t = models.IntegerField(null=True)
+#     k = models.IntegerField(null=True)
+#     #t =  models.DateField(auto_now=False, auto_now_add= False)
+#     box_size = models.CharField(max_length=50, choices=BOX_SIZES,default='80х80х40')
+
+# BOX_SIZES = (
+#                 ('50х50х35', '50х50х35'),
+#                 ('60х60х40', '60х60х40'),
+#                 ('60х60х40-P', '60х60х40-P'),
+#                 ('80х80х40', '80х80х40'),
+#                 ('80х80х40-P', '80х80х40-P'),
+#                 ('240х185х120', '240х185х120'),
+#                 ('270х220х70', '270х220х70'),
+#                 ('корешок 25-40 круглый механизм 7200', 'корешок 25-40 круглый механизм 7200'),
+#                 ('корешок 45-65 д-образный механизм', 'корешок 45-65 д-образный механизм'),
+#                 )
+    
+
+# def get_years(initial=1970):
+#     return [(year, year) for year in range(datetime.datetime.now().year, initial, -1)]
+
+# class Profile(UserenaBaseProfile):
+#     starting_year = models.CharField(blank=False, max_length=4, choices=get_years, default=datetime.datetime.now().year)
+
+
+# --------------------
+
+# def get_my_choices():
+#     # you place some logic here
+#     return choices_list
+
+# class MyForm(forms.Form):
+#     def __init__(self, *args, **kwargs):
+#         super(MyForm, self).__init__(*args, **kwargs)
+#         self.fields['my_choice_field'] = forms.ChoiceField(
+#             choices=get_my_choices() )
+
+# ------------------------------
 
 
 '''

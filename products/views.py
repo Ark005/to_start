@@ -16,6 +16,26 @@ from django.http import HttpResponseNotFound
 
 from django.views import View
 
+
+
+from .models import Test
+from django.shortcuts import HttpResponse
+
+# http://127.0.0.1:8000/my_test
+def test_view(request):
+    tests = Test.objects.all()
+    print(tests)
+    print(tests[0])
+    print(tests[0].int_list)
+
+    print(type(tests[0].int_list))
+    return HttpResponse("<h2>Hello, !!</h2>")
+
+
+
+
+
+
 class Home(ListView):
     model = Product
     template_name = 'products/home.html'
@@ -129,7 +149,7 @@ def indexView(request, slug):
 
 #     return render(request, "products/products_details.html", {"form": form, "products": [product]})
 
-from django.forms import modelform_factory
+from django.forms import modelform_factory, Select
 
 def new_indexView(request, slug):
     # form = ProductForm()
@@ -137,8 +157,23 @@ def new_indexView(request, slug):
     
     try:
         product = Product.objects.get(slug = slug)
-        print("тип продукта", type(product))
-        form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'), labels = {'tirazh':'тираж', 'box_size':'размер коробки'})
+        # print("тип продукта", type(product))
+        # form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'), labels = {'tirazh':'тираж', 'box_size':'размер коробки'})
+
+        BOX_SIZES = (
+                ('50х50х35xxxx', '50х50х35xxxx'),
+                ('60х60х40', '60х60х40'),
+                ('60х60х40-P', '60х60х40-P'),
+                ('80х80х40', '80х80х40'),
+                ('80х80х40-P', '80х80х40-P'),
+                ('240х185х120', '240х185х120'),
+                ('270х220х70', '270х220х70'),
+                )
+
+        form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'), \
+            labels = {'tirazh':'тираж', 'box_size':'размер коробки'}, \
+            widgets = {'box_size': Select(choices=BOX_SIZES) })
+
     except ObjectDoesNotExist:
         product = None
         form = None
