@@ -140,7 +140,7 @@
                 type: 'POST',
                 url: "{% url 'post_product' %}",
                 data: serializedData,
-                async: true,
+                // async: true,
 
                 timeout:20000,
 
@@ -155,6 +155,9 @@
                     // display the newly friend to table.
                     var instance = JSON.parse(response["instance"]);
                     var fields = instance[0]["fields"];
+
+                    // $("#my_friends tbody").empty()
+
                     $("#my_products tbody").prepend(
                         `<tr>
                         <td>${fields["box_size"]||""}</td>
@@ -162,12 +165,24 @@
                         
                         </tr>`
                     )
+
+                    // $("#my_products tbody").html(
+                    //     `<tr>
+                    //     <td>${fields["box_size"]||""}</td>
+                    //     <td>${fields["tirazh"]||""}</td>
+                        
+                    //     </tr>`
+                    // )
                 },
                 // error вызывается, если запрос выполняется с ошибкой
                 error: function (response) {
                     // alert the error if any error occured
-                    alert('EERRRRRRRRRRRRRRRRRRRRRRRRRRR')
+                    // alert('EERRRRRRRRRRRRRRRRRRRRRRRRRRR')
                     alert(response["responseJSON"]["error"]);
+                },
+                complete: function (response) {
+                    // alert('OOOOOOOOOKKKKKKK');
+                    location.reload();
                 }
             })
         })
