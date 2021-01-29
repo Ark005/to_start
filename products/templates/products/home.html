@@ -28,22 +28,53 @@ class= "btn btn-success btn-buy">
 
 
 {% block content %}
+<style>
+  .outer {
 
+  }
+  .inner {
+    width: 1200px;
 
-<div>
-<img src="/media/products/Q2.png" border="0"/>
-        
+    margin: auto;
+  }
+</style>
+
+<div class="outer">
+  <div class="inner"><div align = "center"
+    class="col-md-3">
+      <span class="icon"><i class="fa fa-search"></i></span>
+      <H6 STYLE="font-family: 'avenir next rounded std'">
+      <form method="get">
+        {{ filter.form| crispy }}
+      <button type= "submit"
+    class= "btn btn-success btn-buy">
+      искать
+    </button>
+    </div> </div>
 </div>
 
-<div class="col-md-3">
-  <span class="icon"><i class="fa fa-search"></i></span>
-  <form method="get">
-    {{ filter.form| crispy }}
-  <button type= "submit"
-class= "btn btn-success btn-buy">
-  искать
-</button>
-</div> 
+<div style="position:absolute;z-index:10000;top:515px;margin-left:250px;">
+  <img src="/media/products/005.png" border="0"/>
+  </div>
+
+  <div style="position:absolute;z-index:10000;top:560px;margin-left:500px;">
+    <img src="/media/products/1p.png" border="0"/>
+    </div>
+
+    <div style="position:absolute;z-index:10000;top:580px;margin-left:800px;">
+      <img src="/media/products/calc.png" border="0"/>
+      </div>
+
+
+      <div style="position:absolute;z-index:10000;top:600px;margin-left:950px;">
+        <img src="/media/products/stars.png" border="0"/>
+        </div>
+
+
+        <div style="position:absolute;z-index:10000;top:560px;margin-left:1200px;">
+          <img src="/media/products/delivery.png" border="0"/>
+          </div>
+
 
 
   <!-- <div class="container my-5"> -->
@@ -52,11 +83,18 @@ class= "btn btn-success btn-buy">
     <!-- <div class="row"> -->
     <!-- <div class="row"></div> -->
 
-
+   
+   
+   
 
 <div class="blog">
+
+  <H6 STYLE="font-family: 'avenir next rounded std'">
  <div class="container">
+  
  <h2 class="text-center">Категории продуктов</h2>
+ <H6 STYLE="font-family: 'avenir next rounded std'"></H6>
+ <br>
   <div class="row">
    
     <!-- <div class="card"> -->
@@ -69,13 +107,15 @@ class= "btn btn-success btn-buy">
   <!-- <div class="tile__body list-default__parent"> -->
 
 
-	<div class="col-md-4 col-lg-4 col-sm-12">
+	<div class="col-md-3 col-lg-3 col-sm-6">
+    
 
 	    <div class="card">
 	     <div class="card-img">
 	      <!-- <img align="center" src="{{ product.mainimage.url }}" class="img-fluid"> -->
 	      <!-- <img align="center" src="media/{{ product.mainimage }}" class="img-fluid"> -->
-      		<!-- { % thumbnail 'product.mainimage' "50" as im % } -->
+          <!-- { % thumbnail 'product.mainimage' "50" as im % } -->
+          
       		{% thumbnail product.mainimage "300" as im %}
 		        <img align="center" src="{{ im.url }}" alt="not found" class="img-fluid">
 		        <!-- { % empty % }
@@ -84,9 +124,14 @@ class= "btn btn-success btn-buy">
 	     </div>
 
 	    <div class="card-body">
-	     <h4 class="card-title"><a href="products_by_category/{{ product.id }}">{{ product.name }}</a></h4>
-	      <p class="card-text">
-	       {{ product.preview_text}}
+        <H6 STYLE="font-family: 'Courier New'"></H6>
+         <h6 class="card-title"><a href="products_by_category/{{ product.id }}"><p style="color:rgb(36, 163, 60)">{{ product.name }}></p></a></h6>
+ {{ product.preview_text}} 
+  
+  
+         <p class="card-text">
+
+	      
 	      </p>
 	     </div>
 	   <!--   <div class="card-footer">
@@ -127,4 +172,14 @@ class= "btn btn-success btn-buy">
     </div>
 {% endblock %}
 
-  
+
+
+
+
+<body>
+
+  <video controls loop>
+    <source src="media/box_production1.mp4" type="video/mp4">
+   
+    Your browser does not support the video tag.
+  </video>

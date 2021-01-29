@@ -1,3 +1,10 @@
+<style>
+  body {
+    background-image: url("/media/products/p1.png");
+
+  }
+  </style>
+
 {% extends 'products/base.html' %}
 
 {% block content %}
@@ -102,7 +109,7 @@
       <th scope="col">Дата изготовления</th>
       <th scope="col">Тираж</th>
       <th scope="col">Цена</th>
-      <th scope="col">Убрать товар из корзины</th>
+      <th scope="col">Убрать товар</th>
     </tr>
   </thead>
   <tbody>
@@ -115,6 +122,7 @@
       <td> {{ cart.item.timeplus}} </td>
       
       <td>{{ cart.item.tirazh}} </td>
+      
     
       <!--<td>₽{{ cart.get_total }}</td>-->
       <td>₽{{ cart.item.calc }}</td>
@@ -123,18 +131,18 @@
       {{ cart.quantity }}
      <!-- <a class="ml-2" href="{% url 'mainapp:cart' cart.item.slug %}" ><span class="badge badge-light"><i class="fas fa-plus"></i></span></a> -->
       </td>
+      
+      
+  
 
 
-
-
-
-    </tr>
+    </tr> 
 	{% endfor %}
     <tr>
       <th scope="row"></th> 
       <td colspan="2">Итого</td>
-     <!--  <td>₽{{ order.get_totals| floatformat:2 }}</td>  -->
-      <td>₽{{ product.calc| floatformat:2 }}</td> 
+      <td>₽{{ order.get_totals| floatformat:2 }}</td> 
+      
     </tr>
     <tr>
       <th scope="row"></th>

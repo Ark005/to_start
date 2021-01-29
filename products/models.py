@@ -155,7 +155,7 @@ class  Product(PolymorphicModel):
             #return  3935428.2860 + self.tirazh # 50х50х35 крышка-дно, сборка на автомат от 2500 шт
             return "{0:.0f}".format(round(a,0)) # 50х50х35 крышка-дно, сборка на автомат от 2500 шт
         elif  result_two:
-            a = 2560787.2222
+            a = 100* self.tirazh ** 0.732
             return  "{0:.0f}".format(round(a,0)) # 60x60x40 крышка-дно, сборка на автомат от 2500 шт
         elif  result_three:
             return 2230289.1977  # 80х80х40 крышка-дно, сборка на автомат от 2500 шт  
