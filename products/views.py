@@ -159,20 +159,31 @@ def new_indexView(request, slug):
         product = Product.objects.get(slug = slug)
         # print("тип продукта", type(product))
         # form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'), labels = {'tirazh':'тираж', 'box_size':'размер коробки'})
+        
+        # получение всех размеров
+        boxsizes = tuple(product.boxsizes_set.all().values_list('value', 'name'))
 
-        BOX_SIZES = (
-                ('50х50х35xxxx', '50х50х35xxxx'),
-                ('60х60х40', '60х60х40'),
-                ('60х60х40-P', '60х60х40-P'),
-                ('80х80х40', '80х80х40'),
-                ('80х80х40-P', '80х80х40-P'),
-                ('240х185х120', '240х185х120'),
-                ('270х220х70', '270х220х70'),
-                )
+        if not boxsizes:
+            boxsizes = (('Не задан', 'Не задан'),)
+
+        print('boxsizes \n ', boxsizes)
+
+
+        # print('boxsizes \n ', tuple(boxsizes))
+
+        # BOX_SIZES = (
+        #         ('50х50х35xxxx', '50х50х35xxxx'),
+        #         ('60х60х40', '60х60х40'),
+        #         ('60х60х40-P', '60х60х40-P'),
+        #         # ('80х80х40', '80х80х40'),
+        #         # ('80х80х40-P', '80х80х40-P'),
+        #         # ('240х185х120', '240х185х120'),
+        #         # ('270х220х70', '270х220х70'),
+        #         )
 
         form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'), \
             labels = {'tirazh':'тираж', 'box_size':'размер коробки'}, \
-            widgets = {'box_size': Select(choices=BOX_SIZES) })
+            widgets = {'box_size': Select(choices=boxsizes) })
 
     except ObjectDoesNotExist:
         product = None

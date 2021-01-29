@@ -2,10 +2,11 @@ from django.contrib import admin
 
 from polymorphic.admin import PolymorphicParentModelAdmin, PolymorphicChildModelAdmin, PolymorphicChildModelFilter
 from products.models import Category, Product, SubCategory, \
-BoxType1, BoxType2,Post,FolderType1, FolderType2, Test
+BoxType1, BoxType2,Post,FolderType1, FolderType2, Test, BoxSizes
 
 
 admin.site.register(Test)
+admin.site.register(BoxSizes)
 
 
 admin.site.register(Category)

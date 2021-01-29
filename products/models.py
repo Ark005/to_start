@@ -30,6 +30,9 @@ from polymorphic.models import PolymorphicModel
 
 from django.utils.translation import gettext_lazy as _
 
+
+
+
 #Product Model
 # class  Product(models.Model):
 class  Product(PolymorphicModel):
@@ -98,7 +101,8 @@ class  Product(PolymorphicModel):
     t = models.IntegerField(null=True)
     k = models.IntegerField(null=True)
     #t =  models.DateField(auto_now=False, auto_now_add= False)
-    box_size = models.CharField(max_length=50, choices=BOX_SIZES,default='80х80х40')
+    # box_size = models.CharField(max_length=50, choices=BOX_SIZES,default='80х80х40')
+    box_size = models.CharField(max_length=50, default='80х80х40')
     
 
     # box_size = models.CharField(max_length=48, choices=BOX_SIZES.choices, default='80х80х40')
@@ -187,13 +191,13 @@ class BoxType1(Product):
     """docstring for BoxType1"""
 
     def __init__(self, *args, **kwargs):
-        BOX_SIZES = (
-            ('240х185х120', '240х185х120'),
-            ('270х220х70', '270х220х70'),
-            )
+        # BOX_SIZES = (
+        #     ('240х185х120', '240х185х120'),
+        #     ('270х220х70', '270х220х70'),
+        #     )
 
-        self._meta.get_field('box_size').default  = '240х185х120'
-        self._meta.get_field('box_size').choices = BOX_SIZES
+        # self._meta.get_field('box_size').default  = '240х185х120'
+        # self._meta.get_field('box_size').choices = BOX_SIZES
         super(BoxType1, self).__init__(*args, **kwargs)
     
     # class Meta:
@@ -210,13 +214,13 @@ class BoxType2(Product):
     """docstring for BoxType1"""
 
     def __init__(self, *args, **kwargs):
-        BOX_SIZES = (
-            ('50х50х35', '50х50х35'),
-            ('60х60х40', '60х60х40'),
-            )
+        # BOX_SIZES = (
+        #     ('50х50х35', '50х50х35'),
+        #     ('60х60х40', '60х60х40'),
+        #     )
 
-        self._meta.get_field('box_size').default  = '270х220х70'
-        self._meta.get_field('box_size').choices = BOX_SIZES
+        # self._meta.get_field('box_size').default  = '270х220х70'
+        # self._meta.get_field('box_size').choices = BOX_SIZES
         super(BoxType2, self).__init__(*args, **kwargs)
     
     # BOX_SIZES = (
@@ -232,13 +236,13 @@ class FolderType1(Product):
     """docstring for BoxType1"""
 
     def __init__(self, *args, **kwargs):
-        BOX_SIZES = (
-            ('корешок 25-40 круглый механизм 7200', 'корешок 25-40 круглый механизм 7200'),
-            ('корешок 45-65 д-образный механизм', 'корешок 45-65 д-образный механизм'),
-            )
+        # BOX_SIZES = (
+        #     ('корешок 25-40 круглый механизм 7200', 'корешок 25-40 круглый механизм 7200'),
+        #     ('корешок 45-65 д-образный механизм', 'корешок 45-65 д-образный механизм'),
+        #     )
 
-        self._meta.get_field('box_size').default  = 'корешок 25-40 круглый механизм 7200'
-        self._meta.get_field('box_size').choices = BOX_SIZES
+        # self._meta.get_field('box_size').default  = 'корешок 25-40 круглый механизм 7200'
+        # self._meta.get_field('box_size').choices = BOX_SIZES
         super(FolderType1, self).__init__(*args, **kwargs)
 
 
@@ -247,15 +251,29 @@ class FolderType2(Product):
     """docstring for BoxType1"""
 
     def __init__(self, *args, **kwargs):
-        BOX_SIZES = (
-            ('корешок 25-40 круглый механизм 7200', 'корешок 25-40 круглый механизм 7200'),
-            ('корешок 45-65 д-образный механизм', 'корешок 45-65 д-образный механизм'),
-            )
+        # BOX_SIZES = (
+        #     ('корешок 25-40 круглый механизм 7200', 'корешок 25-40 круглый механизм 7200'),
+        #     ('корешок 45-65 д-образный механизм', 'корешок 45-65 д-образный механизм'),
+        #     )
 
-        self._meta.get_field('box_size').default  = 'корешок 25-40 круглый механизм 7200'
-        self._meta.get_field('box_size').choices = BOX_SIZES
+        # self._meta.get_field('box_size').default  = 'корешок 25-40 круглый механизм 7200'
+        # self._meta.get_field('box_size').choices = BOX_SIZES
         super(FolderType2, self).__init__(*args, **kwargs)
 
+
+
+class BoxSizes(models.Model):
+    value = models.CharField(max_length=80)
+    name = models.CharField(max_length=80)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null = True, blank = True)
+
+    def __str__(self):
+        # return self.name
+        return '  {} {}_{}'.format(self.value, self.product.name, self.product.id)
+
+
+
+# return 'Заявка от {}'.format(self.created.astimezone(tz).strftime('%d.%m.%Y %H:%M'))
 
 # BOX_SIZES = (
 #                 ('50х50х35', '50х50х35'),
