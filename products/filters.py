@@ -14,7 +14,8 @@ class ProductFilter(django_filters.FilterSet):
 
 class CategoryFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(label='поиск по названию,например, коробка')
-
+    class Meta:
+        verbose_name = 'коробка'
     #price = RangeFilter()
    
 

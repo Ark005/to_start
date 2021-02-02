@@ -1,4 +1,4 @@
-from .models import  SubCategory, Product, BoxType1, BoxType2
+from .models import  SubCategory, Product, BoxType1, BoxType2,Note1
 from django import forms
 import datetime
 
@@ -7,6 +7,7 @@ from polymorphic.formsets import polymorphic_modelformset_factory, PolymorphicFo
 ProductFormSet = polymorphic_modelformset_factory(Product, formset_children=(
     PolymorphicFormSetChild(BoxType1),
     PolymorphicFormSetChild(BoxType2),
+    PolymorphicFormSetChild(Note1),
 ), fields = ('tirazh', 'box_size'))
 
 
@@ -23,14 +24,9 @@ class ProductFormCommon(forms.Form):
 
 class ProductForm(forms.ModelForm):
     
-    
-    # def __init__(self, post_data = None, *args, **kwargs):
-    def __init__(self, *args, **kwargs):
-        # if post_data :
-        #     # self.fields.remove('box_size')
-        #     # del self.fields['box_size']
-        #     self.base_fields.remove('box_size')
 
+    def __init__(self, *args, **kwargs):
+    
 
         super(ProductForm, self).__init__(*args, **kwargs)
         ## add a "form-control" class to each form input
