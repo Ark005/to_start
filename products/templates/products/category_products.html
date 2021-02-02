@@ -32,7 +32,6 @@
 				<figcaption class="info-wrap">
 					<!-- Старый -->
 					<h6 class="title text-dots"><a href="/product/{{ product.slug }}">{{ product.name }}</a></h6>
-					<H6 STYLE="font-family: 'avenir next rounded std'"></H6>
 					<h6 class="title text-dots">{{ product.preview_text }}</a></h6>					
 					<div class="action-wrap">
 						<!-- <a href="cart/{{ product.slug }}" class="btn btn-primary btn-sm"> Add to Cart </a>
@@ -53,3 +52,98 @@
   </div>
   </div>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+<div class="blog">
+
+	<H6 STYLE="font-family: 'avenir next rounded std'">
+   <div class="container">
+	
+   <h2 class="text-center">Продукты</h2>
+   <H6 STYLE="font-family: 'avenir next rounded std'"></H6>
+   <br>
+	<div class="row">
+    <div class="row">
+    <div class="col-md-3">
+		<span class="icon"><i class="fa fa-search"></i></span>
+			<form method="get">
+				{{ filter.form| crispy }}
+			<button type= "submit"
+		class= "btn btn-success btn-buy">
+		  искать 
+		</button>
+		</div> 
+
+
+
+
+
+
+		<div class="card-body">
+			<H6 STYLE="font-family: 'Courier New'"></H6>
+			 <h6 class="card-title"><a href=#><p style="color:rgb(36, 163, 60)">{{ product.name }}</p></a></h6>
+	 {{ product.preview_text}} 
+	  
+	  
+			 <p class="card-text">
+	
+			  
+			  </p>
+			 </div>
+
+
+
+
+
+
+
+		
+    <div class="col-md-9">
+		<div class="row">
+		
+		  <div class="col-md-6 col-sm-12 col-lg-4">
+			<figure class="card card-product">
+				<div class="img-wrap"> 
+					<img src="{{ product.mainimage.url }}" style="width: 100%; height: 250px;">
+				</div>
+				<figcaption class="info-wrap">
+					<!-- Старый -->
+					<h6 class="card-title"><a href="products_by_category/{{ product.id }}"><p style="color:rgb(36, 163, 60)">{{ product.name }}></p></a></h6>
+		
+					<H6 STYLE="font-family: 'avenir next rounded std'">
+					<h6 class="title text-dots">{{ product.preview_text }}</a></h6>					
+					<div class="action-wrap">
+						<!-- <a href="cart/{{ product.slug }}" class="btn btn-primary btn-sm"> Add to Cart </a>
+            			<a href="cart/" class="btn btn-primary btn-sm"> View Cart </a> -->
+<!--             <a href="remove/{{ product.slug }}" class="btn btn-danger btn-sm"> Remove</a>
+ -->						<!-- price-wrap.// -->
+						 <div class="price-wrap h5">
+							<!-- <span class="price-new">руб. {{product.price}}</span>-->
+							<!-- <del class="price-old">руб. 1980</del>-->
+						</div> 
+					</div> <!-- action-wrap -->
+				</figcaption>
+			</figure> <!-- card // -->
+		</div> <!-- col // -->
+    
+		</div>
+	</div>
+  </div>
+  </div>
+
+
+
+
+-->

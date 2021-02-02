@@ -81,7 +81,7 @@ class  Product(PolymorphicModel):
     price = models.FloatField(default = None, null=True)
     tirazh = models.IntegerField(null=False)
     t = models.IntegerField(null=True)
-    k = models.IntegerField(null=True)
+    k = models.FloatField(default = None, null=True)
     box_size = models.CharField(max_length=50, default='80х80х40')
     
 
@@ -105,7 +105,7 @@ class  Product(PolymorphicModel):
 
         boxsize = self.boxsizes_set.get(value = self.box_size)
 
-        a = boxsize.k*self.tirazh**boxsize.b
+        a = (boxsize.k*self.tirazh**boxsize.b)*self.k
 
         return "{0:.2f}".format(round(a,0))
 
@@ -220,6 +220,7 @@ class Post(models.Model):
         return self.title
 
 class BoxSizes(models.Model):
+    mainimage = models.ImageField(upload_to='products/', blank=True, null=True)
     value = models.CharField(max_length=80)
     name = models.CharField(max_length=80)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null = True, blank = True)
