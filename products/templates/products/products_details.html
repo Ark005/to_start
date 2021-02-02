@@ -18,8 +18,10 @@
      <h4> </h4>
 
    
-     <a href="{% url 'mainapp:cart' product.slug %}" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i>  Заказать </a>
-   
+     
+     <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+     <span class="sr-only">Загрузка...</span>
+     <h2>мы готовы начать</h2>
       
     </div> <!-- slider-product.// -->
     </article> <!-- gallery-wrap .end// -->
@@ -28,9 +30,10 @@
     <article class="card-body p-5">
         <h3 class="title mb-3">{{ object.name }}</h3>
     <p class="price-detail-wrap"> 
-    
-    
-    <td>
+       
+ 
+        <a href="{% url 'mainapp:cart' product.slug %}" class="btn  btn-lg btn-primary btn-success text-uppercase"> <i class="fas fa-shopping-cart"></i>  Заказать </a>
+        <td>
         <td>{{object.tirazh}}</td>
     
     </td>
@@ -68,13 +71,11 @@
             <input type="hidden" id="custId" name="product_id" value="{{ product.id }}">
             
            
-            <div class = "col text-center">
+          
+            <div style="position:absolute;z-index:10000;top:555px;margin-left:15px;">
+                <h4> </h4><input type="submit" class= "btn btn-success btn-buy" value="Расчитать" />
                 
-                <h4> </h4><input type="submit" class="btn btn-primary" value="Рассчитать" /> 
-                
-            </div>
-            
-
+                </div>
         </div>
     <form>  
 </div>
@@ -85,7 +86,7 @@
     <table class="table table-striped table-sm" id="my_products">  
         <thead>
             <tr>
-                <th>Размер(ДхШхВ)</th>
+                <th>Размер</th>
                 <th>Дата изготовления</th>
                 <th>Тираж(шт.)</th>
                 <th>Цена(руб.)</th>

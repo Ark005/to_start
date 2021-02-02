@@ -155,13 +155,7 @@ class FolderType1(Product):
     """docstring for BoxType1"""
 
     def __init__(self, *args, **kwargs):
-        # BOX_SIZES = (
-        #     ('корешок 25-40 круглый механизм 7200', 'корешок 25-40 круглый механизм 7200'),
-        #     ('корешок 45-65 д-образный механизм', 'корешок 45-65 д-образный механизм'),
-        #     )
 
-        # self._meta.get_field('box_size').default  = 'корешок 25-40 круглый механизм 7200'
-        # self._meta.get_field('box_size').choices = BOX_SIZES
         super(FolderType1, self).__init__(*args, **kwargs)
 
 
@@ -179,6 +173,12 @@ class Note1 (Product):
      
         super(Note1, self).__init__(*args, **kwargs)
 
+class Note2 (Product):
+
+    def __init__(self, *args, **kwargs):
+     
+        super(Note2, self).__init__(*args, **kwargs)
+
 from django.core.validators import int_list_validator
 
 class Test(PolymorphicModel):
@@ -187,7 +187,6 @@ class Test(PolymorphicModel):
                 ('240х185х120', '240х185х120'),
                 ('270х220х70', '270х220х70'),
                 )
-
 
     name = models.CharField(max_length=40)
     # dob = models.DateField(verbose_name='Date of birth')
