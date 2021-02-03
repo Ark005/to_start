@@ -76,13 +76,13 @@ class  Product(PolymorphicModel):
     slug = models.SlugField(default = None, null=True)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default = None, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default = None, null=True)
-    preview_text = models.TextField(max_length=700, verbose_name='Preview Text', blank=True, null=True)
+    preview_text = models.TextField(max_length=50, verbose_name='Preview Text', blank=True, null=True)
     detail_text = models.TextField(max_length=1000, verbose_name='Detail Text', blank=True, null=True)
     price = models.FloatField(default = None, null=True)
     tirazh = models.IntegerField(null=False)
     t = models.IntegerField(null=True)
     k = models.FloatField(default = None, null=True)
-    box_size = models.CharField(max_length=50, default='80х80х40')
+    box_size = models.CharField(max_length=50)
     
 
     def timeplus(self):
@@ -105,7 +105,7 @@ class  Product(PolymorphicModel):
 
         boxsize = self.boxsizes_set.get(value = self.box_size)
 
-        a = (boxsize.k*self.tirazh**boxsize.b)*self.k
+        a = float(boxsize.k*self.tirazh**boxsize.b)*self.k
 
         return "{0:.2f}".format(round(a,0))
 
