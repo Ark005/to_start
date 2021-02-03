@@ -6,14 +6,22 @@
 {% block content %}
 
 
+<div class="blog">
+
+	<H6 STYLE="font-family: 'avenir next rounded std'">
+   <div class="container">
+	
+   <h2 class="text-center">Продукты</h2>
+   <H6 STYLE="font-family: 'avenir next rounded std'"></H6>
+   <br>
+	<div class="row">
 
 
-
-  <div class="container my-5">
-  	<h2 class="my-5">Продукты</h2>
+  
     <div class="row">
     <div class="col-md-3">
 		<span class="icon"><i class="fa fa-search"></i></span>
+		<H6 STYLE="font-family: 'avenir next rounded std'">
 			<form method="get">
 				{{ filter.form| crispy }}
 			<button type= "submit"
@@ -31,8 +39,18 @@
 				</div>
 				<figcaption class="info-wrap">
 					<!-- Старый -->
-					<h6 class="title text-dots"><a href="/product/{{ product.slug }}">{{ product.name }}</a></h6>
-					<h6 class="title text-dots">{{ product.preview_text }}</a></h6>					
+
+					<div class="card-body">
+						<H6 STYLE="font-family: 'Courier New'"></H6>
+						 <h6 class="card-title"><a href="/product/{{ product.slug }}"><p style="color:rgb(36, 163, 60)">{{ product.name }}></p></a></h6>
+				 {{ product.preview_text}} 
+				  
+				  
+						 <p class="card-text">
+				
+						  
+						  </p>
+						 </div>				
 					<div class="action-wrap">
 						<!-- <a href="cart/{{ product.slug }}" class="btn btn-primary btn-sm"> Add to Cart </a>
             			<a href="cart/" class="btn btn-primary btn-sm"> View Cart </a> -->
