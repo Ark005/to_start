@@ -1,0 +1,156 @@
+
+        <div>
+
+            <img src="/media/products/Q.png" border="0"/>
+            
+            </div>
+            
+    
+    {% extends 'products/base.html' %}
+    {% load thumbnail %}
+    
+    
+    
+ 
+  
+    
+    
+    
+    {% block content %}
+  
+    <div class="blog">
+    
+      <H6 STYLE="font-family: 'avenir next rounded std'">
+     <div class="container">
+      
+     <h2 class="text-center">Добрый день, друзья!</h2>
+     <H6 STYLE="font-family: 'avenir next rounded std'"></H6>
+     <br>
+     <h5 class="text-left">
+     <H5 STYLE="font-family: 'avenir next rounded std'">
+
+        
+
+        Если  заниматься чем-то<br><br> <p style="color:rgb(24, 136, 44)">больше 20 лет,</p> то накопится большой опыт, он кристаллизуется и им захочется поделиться. <br><br> <p>За это время пришло понимание, что:<p>
+            <p style="color:rgb(24, 136, 44)">* всей массой информации можно удобно пользоваться,<p style="color:rgb(24, 136, 44)">* она максимально понятна, </p><p><p style="color:rgb(24, 136, 44)">* все полиграфические решения уже найдены.</p>  </p>
+        
+        <p>Прежде всего, нужно выбрать надежных поставщиков, отследить качество,
+        очень быстро и визуально понятно описать продукт.
+        <p> посчитать его стоимость, срок производства и доставки.
+        Ну и, конечно, всегда быть на стороне клиента.
+        
+       
+            <h1><div class="blog">
+
+                <H1 STYLE="font-family: 'avenir next rounded std'"><img align="center" 
+                <br>
+                за 60 cекунд
+ <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
+    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
+    <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
+  </svg>  найти
+  <p>•решение •	 рассчитать •	 заказать
+ </h1>
+
+            
+</div>
+                        
+
+       <h5 class="text-left">
+           <h4>Как это сделать?</h4>
+           <br>
+       <H5 STYLE="font-family: 'avenir next rounded std'">
+        
+        Каталогизировать все по категориям, <p> в подкатегориях разделить все на разные изделия, <p>визуализировать и вставить калькулятор. <p>Разумеется, у каждого изделия заранее описать технические параметры. 
+        
+        
+        </h5>
+
+      <div class="row">
+       
+        <!-- <div class="card"> -->
+         <!-- <div class="card-img">
+          <img align="center" src="images/posts/polit.jpg" class="img-fluid">
+         </div> -->
+    
+        {% for product in filter.qs %}
+      
+      <!-- <div class="tile__body list-default__parent"> -->
+    
+    
+        <div class="col-md-3 col-lg-3 col-sm-6">
+        
+    
+            <div class="card">
+             <div class="card-img">
+              <!-- <img align="center" src="{{ product.mainimage.url }}" class="img-fluid"> -->
+              <!-- <img align="center" src="media/{{ product.mainimage }}" class="img-fluid"> -->
+              <!-- { % thumbnail 'product.mainimage' "50" as im % } -->
+              
+                  {% thumbnail product.mainimage "300" as im %}
+                    <img align="center" src="{{ im.url }}" alt="not found" class="img-fluid">
+                    <!-- { % empty % }
+                    <p>No image</p> -->
+                {% endthumbnail %}
+             </div>
+    
+            <div class="card-body">
+            <H6 STYLE="font-family: 'Courier New'"></H6>
+             <h6 class="card-title"><a href="products_by_category/{{ product.id }}"><p style="color:rgb(36, 163, 60)">{{ product.name }}></p></a></h6>
+     {{ product.preview_text}} 
+      
+      
+             <p class="card-text">
+    
+              
+              </p>
+             </div>
+    
+            </div>
+    
+    
+      
+      </div>
+           
+        
+              
+            {% endfor %}
+    
+       </div>
+      </div>
+     </div>
+    </div>
+    </div>
+    </div>
+    
+      
+    
+    
+      <div>
+        <h6 class="text-center"></h6> 
+        
+        </div>
+    <br>
+    <br>
+    <br>
+    
+    <div 
+    
+
+    
+         
+              </div>
+    
+    {% endblock %}
+    
+    
+    
+    
+    
+    <body>
+    
+      <video controls loop>
+        <source src="media/box_production1.mp4" type="video/mp4">
+       
+        Your browser does not support the video tag.
+      </video>

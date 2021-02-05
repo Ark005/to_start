@@ -1,0 +1,141 @@
+
+
+        <div>
+
+            <img src="/media/products/Q.png" border="0"/>
+            
+            </div>
+            
+    
+    {% extends 'products/base.html' %}
+    {% load thumbnail %}
+    
+    
+    
+    
+    {% load crispy_forms_tags %}
+    <div class="col-md-">
+      <span class="icon"><i class="fa fa-search"></i></span>
+      <form method="get">
+        {{ filter.form| crispy }}
+      <button type= "submit"
+    class= "btn btn-success btn-buy">
+      искать
+    </button>
+    </div> 
+    
+    
+    
+    
+    {% block content %}
+    
+    <!--
+    <div style="position:absolute;z-index:10000;top:515px;margin-left:250px;">
+      <img src="/media/products/005.png" border="0"/>
+      </div>
+       -->
+    <!--
+      <div style="position:absolute;z-index:10000;top:560px;margin-left:500px;">
+        <img src="/media/products/1p.png" border="0"/>
+        <h6>решение для вас</h6>
+        </div>
+      -->
+      
+    <div class="blog">
+    
+      <H6 STYLE="font-family: 'avenir next rounded std'">
+     <div class="container">
+      
+     <h2 class="text-center">технологии</h2>
+     <H6 STYLE="font-family: 'avenir next rounded std'"></H6>
+     <br>
+      <div class="row">
+
+
+
+       
+        <!-- <div class="card"> -->
+         <!-- <div class="card-img">
+          <img align="center" src="images/posts/polit.jpg" class="img-fluid">
+         </div> -->
+    
+        {% for product in filter.qs %}
+      
+      <!-- <div class="tile__body list-default__parent"> -->
+    
+    
+        <div class="col-md-3 col-lg-3 col-sm-6">
+        
+    
+            <div class="card">
+             <div class="card-img">
+              <!-- <img align="center" src="{{ product.mainimage.url }}" class="img-fluid"> -->
+              <!-- <img align="center" src="media/{{ product.mainimage }}" class="img-fluid"> -->
+              <!-- { % thumbnail 'product.mainimage' "50" as im % } -->
+              
+                  {% thumbnail product.mainimage "300" as im %}
+                    <img align="center" src="{{ im.url }}" alt="not found" class="img-fluid">
+                    <!-- { % empty % }
+                    <p>No image</p> -->
+                {% endthumbnail %}
+             </div>
+    
+            <div class="card-body">
+            <H6 STYLE="font-family: 'Courier New'"></H6>
+             <h6 class="card-title"><a href="products_by_category/{{ product.id }}"><p style="color:rgb(36, 163, 60)">{{ product.name }}></p></a></h6>
+     {{ product.preview_text}} 
+      
+      
+             <p class="card-text">
+    
+              
+              </p>
+             </div>
+    
+            </div>
+    
+    
+      
+      </div>
+           
+        
+              
+            {% endfor %}
+    
+       </div>
+      </div>
+     </div>
+    </div>
+    </div>
+    </div>
+    
+      
+    
+    
+      <div>
+        <h6 class="text-center"></h6> 
+        
+        </div>
+    <br>
+    <br>
+    <br>
+    
+    <div 
+    
+
+    
+  
+    
+    {% endblock %}
+    
+    
+    
+    
+    
+    <body>
+    
+      <video controls loop>
+        <source src="media/box_production1.mp4" type="video/mp4">
+       
+        Your browser does not support the video tag.
+      </video>

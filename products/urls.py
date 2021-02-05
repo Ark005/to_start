@@ -4,6 +4,9 @@ from . views import home, ProductDetail, Home, postFriend, \
 checkNickName,indexView, show_subcategory, get_subcategory, \
 postProduct, get_products, new_indexView, products_by_category, test_view
 
+ 
+
+  
 app_name= 'mainapp'
 
 urlpatterns = [
@@ -39,6 +42,8 @@ urlpatterns = [
     path('decrease-cart/<slug>', decreaseCart, name='decrease-cart'),
     path('remove/<slug>', remove_from_cart, name='remove-cart'),
     path('upload_file/', upload_file, name='upload_file'),
+
+
 ]
 
 

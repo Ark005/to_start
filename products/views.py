@@ -113,8 +113,8 @@ def checkNickName(request):
 
     return JsonResponse({}, status = 400)
 
-
-
+def foto():
+    return render ("foto")
 
 def indexView(request, slug):
     form = ProductForm()

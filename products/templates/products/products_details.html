@@ -15,7 +15,7 @@
     <div class="img-big-wrap">
        
       <div> <a href="#"><img src="/media/{{product.mainimage }}" style="width: 450px"></a></div>
- <!-- <div> <a href="#"><img src="/media/{{boxsizes.mainimage }}" style="width: 450px"></a></div> -->
+ <!-- <div> <a href="#"><img src="/media/{{product.box_size.mainimage }}" style="width: 450px"></a></div> -->
      <h4> </h4>
      
    
@@ -24,7 +24,9 @@
      <span class="sr-only">Загрузка...</span>
      <h2>мы готовы начать</h2>
      <a href="{% url 'mainapp:cart' product.slug %}" class="btn  btn-lg btn-primary btn-success text-uppercase"> <i class="fas fa-shopping-cart"></i>  Заказать </a>
-    </div> <!-- slider-product.// -->
+    </div> 
+    
+    <!-- slider-product.// -->
     </article> <!-- gallery-wrap .end// -->
             </aside>
             <aside class="col-sm-7">

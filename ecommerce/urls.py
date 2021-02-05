@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-
+from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -32,18 +32,19 @@ from products.views import (
 urlpatterns = [
  	path('', include('products.urls', namespace='mainapp')),
  	path('', include('checkout.urls', namespace='checkout')),
-    # path('product_detail.html',indexView),
-    # path('product/br/',indexView),
     path('post/ajax/product', postProduct, name = "post_product"),
     path('get/ajax/validate/nickname', checkNickName, name = "validate_nickname"),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('index11.html',indexView),
-
+    path('about.html/', TemplateView.as_view(template_name="products/about.html")),
+    path('requirements.html/', TemplateView.as_view(template_name="products/requirements.html")),
+    path('technologies.html/', TemplateView.as_view(template_name="products/technologies.html")),
+    path('layout.html/', TemplateView.as_view(template_name="products/layout.html")),
+    path('delivery.html/', TemplateView.as_view(template_name="products/delivery.html")),
+    path('photo.html/', TemplateView.as_view(template_name="products/photo.html")),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
 urlpatterns += staticfiles_urlpatterns()
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

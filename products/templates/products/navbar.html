@@ -10,13 +10,22 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <li {% if request.path == 'contact' %}class="nav-item active"{% else %}class="nav-item"{% endif %}>
-        <a class="nav-link" href="#">О нас <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="http://127.0.0.1:8000/about.html/">о нас <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">как работать на сайте</a>
+        <a class="nav-link" href="http://127.0.0.1:8000/technologies.html">технологии</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Производство</a>
+        <a class="nav-link" href="http://127.0.0.1:8000/layout.html">дизайн</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:8000/requirements.html/">требования к файлам</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:8000/photo.html/">фотосъемка</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:8000/delivery.html/">доставка</a>
       </li>
       
       {% if request.user.is_authenticated %}
@@ -30,7 +39,8 @@
         
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">+7(925)740-3893</a>
+        <a class="nav-link" href="#"><i class="fa fa-phone"></i> +7(495) 740*38*93</a>
+        <a class="nav-link" href="#"><i class="fa fa-envelope" aria-hidden="true"></i>info@005.ru</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
