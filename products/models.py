@@ -105,7 +105,9 @@ class  Product(PolymorphicModel):
 
         boxsize = self.boxsizes_set.get(value = self.box_size)
 
-        a = float(boxsize.k*self.tirazh**boxsize.b)*self.k
+        a = float(boxsize.k*self.tirazh**boxsize.b)*self.k*1.06
+        if a<1000:
+            a=1000
 
         return "{0:.2f}".format(round(a,0))
 
