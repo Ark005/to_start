@@ -78,7 +78,8 @@ class  Product(PolymorphicModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default = None, null=True)
     preview_text = models.TextField(max_length=50, verbose_name='Preview Text', blank=True, null=True)
     detail_text = models.TextField(max_length=1000, verbose_name='Detail Text', blank=True, null=True)
-    price = models.FloatField(default = None, null=True)
+    #price = models.FloatField(default = None, null=True)
+    lim1 = models.FloatField(default = None, null=True)
     tirazh = models.IntegerField(null=False)
     t = models.IntegerField(null=True)
     k = models.FloatField(default = None, null=True)
@@ -106,8 +107,8 @@ class  Product(PolymorphicModel):
         boxsize = self.boxsizes_set.get(value = self.box_size)
 
         a = float(boxsize.k*self.tirazh**boxsize.b)*self.k*1.06
-        if a<1000:
-            a=1000
+        if a<self.lim1:
+            a=self.lim1
 
         return "{0:.2f}".format(round(a,0))
 

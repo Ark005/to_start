@@ -182,7 +182,7 @@ def new_indexView(request, slug):
         #         )
 
         form  = modelform_factory(type(product), fields = ('tirazh', 'box_size'), \
-            labels = {'tirazh':'тираж', 'box_size':'изменяемый параметр'}, \
+            labels = {'tirazh':'тираж', 'box_size':'размер, параметры'}, \
             widgets = {'box_size': Select(choices=boxsizes) })
 
     except ObjectDoesNotExist:
