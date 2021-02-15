@@ -58,19 +58,7 @@ class  Product(PolymorphicModel):
         except cls.DoesNotExist:
             return cls()
 
-    BOX_SIZES = (
-                ('50х50х35', '50х50х35'),
-                ('60х60х40', '60х60х40'),
-                ('80х80х40', '80х80х40'),
-                ('240х185х120', '240х185х120'),
-                ('270х220х70', '270х220х70'),
-                ('корешок 25-40 круглый механизм 7200', 'корешок 25-40 круглый механизм 7200'),
-                ('корешок 45-65 д-образный механизм', 'корешок 45-65 д-образный механизм'),
-                )
-    
    
-
-
     mainimage = models.ImageField(upload_to='products/', blank=True, null=True)
     name = models.CharField(max_length=300, default = None, null=True)
     slug = models.SlugField(default = None, null=True)
@@ -80,9 +68,10 @@ class  Product(PolymorphicModel):
     detail_text = models.TextField(max_length=1000, verbose_name='Detail Text', blank=True, null=True)
     #price = models.FloatField(default = None, null=True)
     lim1 = models.FloatField(default = None, null=True)
+    lim2 = models.FloatField(default = None, null=True)
     tirazh = models.IntegerField(null=False)
     t = models.IntegerField(null=True)
-    k = models.FloatField(default = None, null=True)
+    p = models.FloatField(default = None, null=True)
     box_size = models.CharField(max_length=50)
     
 
@@ -106,33 +95,12 @@ class  Product(PolymorphicModel):
 
         boxsize = self.boxsizes_set.get(value = self.box_size)
 
-        a = float(boxsize.k*self.tirazh**boxsize.b)*self.k*1.06
-        if a<self.lim1:
-            a=self.lim1
-
-        return "{0:.2f}".format(round(a,0))
-
-"""
-        def get_total(self):
-        total = int(self.item.calc())
-        #floattotal = float("{0:.2f}".format(total))
-        return total #floattotal
-
-        return "{0:.2f}".format(round(a,0))
-"""
-class BoxSizes(models.Model):
-    value = models.CharField(max_length=80)
-    name = models.CharField(max_length=80)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null = True, blank = True)
-    # к - первый коэффициент
-    k = models.FloatField(null = True, blank = True)
-    # b - второй коэффициент
-    b = models.FloatField(null = True, blank = True)
-
-    def __str__(self):
-        # return self.name
-        return '  {} {}_{}'.format(self.value, self.product.name, self.product.id)
+        a = float(boxsize.b*self.tirazh**2+boxsize.b*self.tirazh**1+boxsize.h)*self.p*1.06
+      
        
+
+        return "{0:.2f}".format(round(a,0))
+    
 
 
 
@@ -198,7 +166,19 @@ class Test(PolymorphicModel):
     int_list = models.CharField(validators=[int_list_validator], max_length=100)
 
 
+class BoxSizes(models.Model):
 
+    value = models.CharField(max_length=80)
+    name = models.CharField(max_length=80)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null = True, blank = True)
+    b = models.FloatField(null = True, blank = True)
+    h = models.FloatField(null = True, blank = True)
+    d = models.FloatField(null = True, blank = True)
+  
+
+    def __str__(self):
+        # return self.name
+        return '  {} {}_{}'.format(self.value, self.product.name, self.product.id)
 
 '''
 class Payment(models.Model):
@@ -222,21 +202,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-class BoxSizes(models.Model):
-    mainimage = models.ImageField(upload_to='products/', blank=True, null=True)
-    value = models.CharField(max_length=80)
-    name = models.CharField(max_length=80)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null = True, blank = True)
-    # к - первый коэффициент
-    k = models.FloatField(null = True, blank = True)
-    # b - второй коэффициент
-    b = models.FloatField(null = True, blank = True)
-
-    def __str__(self):
-        # return self.name
-        return '  {} {}_{}'.format(self.value, self.product.name, self.product.id)
-
-        #return "{0:.0f}".format(round(a,0))
 
 
 
