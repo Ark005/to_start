@@ -167,13 +167,13 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 
-# Сюда поставить пароль и почту
-EMAIL_HOST_USER = 'petr@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+# Сюда поставить пароль и почту ВАШИ
+EMAIL_HOST_USER = '005ark@gmail.com'
+EMAIL_HOST_PASSWORD = 'LizaArt005!'
 
 
-DEFAULT_FROM_EMAIL = 'Arcadiy'
-DEFAULT_TO_EMAIL = '782732713787@ckjskdcdfnkdsf.com'
+DEFAULT_FROM_EMAIL = 'With Love'
+DEFAULT_TO_EMAIL = 'am-005@yandex.ru'
 
 
 THUMBNAIL_DEBUG = True,

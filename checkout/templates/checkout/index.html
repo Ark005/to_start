@@ -35,6 +35,8 @@
         </div>
       </div>
       {% endif %}
+
+
       
     </div>
     <div class="col-md-3">
@@ -54,6 +56,16 @@
       </div>
     </div>
   </div>
+
+      <div class="test_form">
+          <form action="{% url 'checkout:send_email' %}" method="post" >
+          {% csrf_token %}
+
+         {{ test_form}}
+          <button type="submit" class="btn btn-primary float-right">Отправить письмо</button>
+          </form>
+       </div>
+
 </div>
 
 {% endblock %}
