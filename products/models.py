@@ -94,10 +94,16 @@ class  Product(PolymorphicModel):
     def calc(self):
 
         boxsize = self.boxsizes_set.get(value = self.box_size)
-
-        a = float(boxsize.b*self.tirazh**2+boxsize.b*self.tirazh**1+boxsize.h)*self.p*1.06
       
-       
+        a = float(boxsize.b*self.tirazh**2+boxsize.h*self.tirazh**1+boxsize.d)
+        #a = float(boxsize.b*self.tirazh**2+boxsize.h*self.tirazh**1+boxsize.d)*self.p*1.06
+        #a = float(boxsize.b*self.tirazh**3+boxsize.h*self.tirazh**2+boxsize.d*self.tirazh+boxsize.e)
+
+        if self.tirazh<self.lim1:
+            self.tirazh=self.lim1
+        elif self.tirazh>self.lim2:
+            self.tirazh=self.lim2
+
 
         return "{0:.2f}".format(round(a,0))
     
@@ -174,7 +180,7 @@ class BoxSizes(models.Model):
     b = models.FloatField(null = True, blank = True)
     h = models.FloatField(null = True, blank = True)
     d = models.FloatField(null = True, blank = True)
-  
+    
 
     def __str__(self):
         # return self.name
