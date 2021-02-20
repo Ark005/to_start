@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from products.models import Product
@@ -16,6 +17,9 @@ class Cart(models.Model):
 
 
     def __str__(self):
+
+        if item.cart.quantity>1:
+            item.cart.quantity =1
         return f'{self.quantity} of {self.item.name}'
 
     def get_total(self):

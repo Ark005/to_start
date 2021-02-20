@@ -127,10 +127,20 @@
       <!--<td>₽{{ cart.get_total }}</td>-->
       <td>₽{{ cart.item.calc }}</td>
       <td>
-        <a class="mr-2" href="{% url 'mainapp:decrease-cart' cart.item.slug %}"><span class="badge badge-light"><i class="fas fa-minus"></i></span></a>
-      {{ cart.quantity }}
+        <a class="mr-2" href="{% url 'mainapp:decrease-cart' cart.item.slug %}"><span class="badge badge-light"><button style="font-size:14px"> <i class="fa fa-cut"></i></button></span></a> 
+       
+       <!--  {{ cart.quantity }}-->
      <!-- <a class="ml-2" href="{% url 'mainapp:cart' cart.item.slug %}" ><span class="badge badge-light"><i class="fas fa-plus"></i></span></a> -->
-      </td>
+     <html>
+      <head>
+      <title>Font Awesome Icons</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      </head>
+      <body>
+     
+     
+    </td>
       
       
   
