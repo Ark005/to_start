@@ -1,0 +1,231 @@
+
+
+        <div>
+
+        <img src="/media/products/Q.png" border="0"/>
+        
+        </div>
+        
+
+{% extends 'products/base.html' %}
+{% load thumbnail %}
+
+
+
+
+{% load crispy_forms_tags %}
+<div class="col-md-">
+  <span class="icon"><i class="fa fa-search"></i></span>
+  <form method="get">
+    {{ filter.form| crispy }}
+  <button type= "submit"
+class= "btn btn-success btn-buy">
+  искать
+</button>
+</div> 
+
+
+
+
+{% block content %}
+<style>
+  .outer {
+
+  }
+  .inner {
+    width: 1200px;
+    margin: auto;
+  }
+</style>
+
+<div class="outer">
+  <div class="inner"><div align = "center"
+    class="col-md-3">
+      <span class="icon"><i class="fa fa-search"></i></span>
+      <H6 STYLE="font-family: 'avenir next rounded std'">
+      <form method="get">
+        {{ filter.form| crispy }}
+      <button type= "submit"
+    class= "btn btn-success btn-buy">
+      искать
+    </button>
+    </div> </div>
+</div>
+<!--
+<div style="position:absolute;z-index:10000;top:515px;margin-left:250px;">
+  <img src="/media/products/005.png" border="0"/>
+  </div>
+   -->
+<!--
+  <div style="position:absolute;z-index:10000;top:560px;margin-left:500px;">
+    <img src="/media/products/1p.png" border="0"/>
+    <h6>решение для вас</h6>
+    </div>
+  -->
+  <div style="position:absolute;z-index:10000;top:600px;margin-left:700px;">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    
+    <i class="fa fa-2x fa-spin fa-refresh"></i>
+    
+    <h6>он-лайн расчет</h6>
+
+     
+    
+    
+  </div>
+  <div style="position:absolute;z-index:10000;top:600px;margin-left:900px;">
+    <h1><i class="fa fa-shopping-cart" aria-hidden="true"></i></h1>
+    <span class="sr-only">Загрузка...</span>
+
+    <h6>он-лайн заказ</h6>
+    </div>
+    </div>
+    <div style="position:absolute;z-index:10000;top:600px;margin-left:1100px;">
+      <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+      <span class="sr-only">Загрузка...</span>
+
+      <h6>производство</h6>
+      </div>
+
+    </div>
+<!--
+
+    <div style="position:absolute;z-index:10000;top:600px;margin-left:020px;">
+  
+      <span class="sr-only">Загрузка...</span>
+  
+     
+      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
+        <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
+        <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
+      </svg> 
+     
+      <h6>быстро</h6>
+    </div>
+  -->
+      <div style="position:absolute;z-index:10000;top:600px;margin-left:450px;">
+        <div class="rating">
+        <h2> <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></h2> 
+        
+        <h6>высокое качество</h6>
+          </div>
+        </div>
+
+
+        <div style="position:absolute;z-index:10000;top:610px;margin-left:1300px;">
+        
+          <h2><i class="fas fa-truck"></i></h2>
+          
+        
+          <h6>доставка</h6>
+          </div>
+
+        
+
+  <!-- <div class="container my-5"> -->
+    <!-- <h2 class="my-5">Категории продуктов</h2> -->
+    <!-- <div class="row"></div> -->
+    <!-- <div class="row"> -->
+    <!-- <div class="row"></div> -->
+
+   
+   
+   
+
+<div class="blog">
+
+  <H6 STYLE="font-family: 'avenir next rounded std'">
+ <div class="container">
+  
+ <h2 class="text-center">Категории продуктов</h2>
+ <H6 STYLE="font-family: 'avenir next rounded std'"></H6>
+ <br>
+  <div class="row">
+   
+    <!-- <div class="card"> -->
+     <!-- <div class="card-img">
+      <img align="center" src="images/posts/polit.jpg" class="img-fluid">
+     </div> -->
+
+	{% for product in filter.qs %}
+  
+  <!-- <div class="tile__body list-default__parent"> -->
+
+
+	<div class="col-md-3 col-lg-3 col-sm-6">
+    
+
+	    <div class="card">
+	     <div class="card-img">
+	      <!-- <img align="center" src="{{ product.mainimage.url }}" class="img-fluid"> -->
+	      <!-- <img align="center" src="media/{{ product.mainimage }}" class="img-fluid"> -->
+          <!-- { % thumbnail 'product.mainimage' "50" as im % } -->
+          
+      		{% thumbnail product.mainimage "300" as im %}
+		        <img align="center" src="{{ im.url }}" alt="not found" class="img-fluid">
+		        <!-- { % empty % }
+		        <p>No image</p> -->
+			{% endthumbnail %}
+	     </div>
+
+	    <div class="card-body">
+        <H6 STYLE="font-family: 'Courier New'"></H6>
+         <h6 class="card-title"><a href="products_by_category/{{ product.id }}"><p style="color:rgb(36, 163, 60)">{{ product.name }}></p></a></h6>
+ {{ product.preview_text}} 
+  
+  
+         <p class="card-text">
+
+	      
+	      </p>
+	     </div>
+
+	    </div>
+
+
+  
+  </div>
+	   
+	
+		  
+		{% endfor %}
+
+   </div>
+  </div>
+ </div>
+</div>
+</div>
+</div>
+
+  
+
+
+  <div>
+    <h6 class="text-center"></h6> 
+    
+    </div>
+<br>
+<br>
+<br>
+
+<div 
+
+
+
+
+              
+          </div>
+
+{% endblock %}
+
+
+
+
+
+<body>
+
+  <video controls loop>
+    <source src="media/box_production1.mp4" type="video/mp4">
+   
+    Your browser does not support the video tag.
+  </video>
