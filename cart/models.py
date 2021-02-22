@@ -18,9 +18,10 @@ class Cart(models.Model):
 
     def __str__(self):
 
-        if item.cart.quantity>1:
-            item.cart.quantity =1
-        return f'{self.quantity} of {self.item.name}'
+       
+       
+        #return f'{self.quantity} of {self.item.name}'
+        return f'{self.item.name}'
 
     def get_total(self):
         total = int(float(self.item.calc()))
