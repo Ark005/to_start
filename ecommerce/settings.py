@@ -168,12 +168,12 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 
 # Сюда поставить пароль и почту ВАШИ
-EMAIL_HOST_USER = '005ark@gmail.com'
-EMAIL_HOST_PASSWORD = 'LizaArt005!'
+EMAIL_HOST_USER = '***@gmail.com'
+EMAIL_HOST_PASSWORD = '***'
 
 
 DEFAULT_FROM_EMAIL = 'With Love'
-DEFAULT_TO_EMAIL = 'am-005@yandex.ru'
+DEFAULT_TO_EMAIL = '***'
 
 
 THUMBNAIL_DEBUG = True,
