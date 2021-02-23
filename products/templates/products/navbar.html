@@ -16,7 +16,7 @@
         <a class="nav-link" href="http://127.0.0.1:8000/technologies.html">технологии</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://127.0.0.1:8000/layout.html">дизайн</a>
+       <!--  <a class="nav-link" href="http://127.0.0.1:8000/layout.html">дизайн</a>-->
       </li>
       <li class="nav-item">
         <a class="nav-link" href="http://127.0.0.1:8000/requirements.html/">требования к файлам</a>
@@ -31,7 +31,7 @@
       {% if request.user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'mainapp:cart-home' %}">
-          <i class="fa fa-shopping-cart"></i> Корзина
+          <i class="fa fa-shopping-cart"></i>  Корзина
           <span class="badge badge-light">{{ request.user| cart_total }}</span>
         </a>
       </li>

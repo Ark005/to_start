@@ -19,9 +19,9 @@ class Cart(models.Model):
     def __str__(self):
 
        
-       
+        return f'{self.item.name} / {self.item.box_size} / {self.item.tirazh} шт.'
         #return f'{self.quantity} of {self.item.name}'
-        return f'{self.item.name}'
+        #return f'{self.item.name,self.item.tirazh}'
 
     def get_total(self):
         total = int(float(self.item.calc()))

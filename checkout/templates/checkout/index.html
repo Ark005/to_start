@@ -13,7 +13,7 @@
           {% csrf_token %}
 
          {{ form | crispy}}
-          <button type="submit" class="btn btn-primary float-right">Далее</button>
+          <button type="submit" class="btn btn-secondary float-right">Далее</button>
           </form>
        </div>
      </div>
@@ -30,7 +30,7 @@
         <div class="card-body">
         <!-- Здесь отправка email -->
         <!-- <a href="{% url 'checkout:payment' %}" class="btn btn-primary float-right">Договор-оферта</a> -->
-        <a href="{% url 'checkout:send_email' %}" class="btn btn-primary float-right">Договор-оферта</a>
+        <a href="{% url 'checkout:send_email' %}"  class="btn btn-secondary btn-sm"></button>Договор-оферта</a>
 
         </div>
       </div>
@@ -62,7 +62,7 @@
           {% csrf_token %}
 
          {{ test_form}}
-          <button type="submit" class="btn btn-primary float-right">Отправить письмо</button>
+          <button type="submit" class="btn btn-success float-right">Отправить письмо</button>
           </form>
        </div>
 

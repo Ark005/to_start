@@ -23,7 +23,7 @@
      <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
      <span class="sr-only">Загрузка...</span>
      <h2>мы готовы начать</h2>
-     <a href="{% url 'mainapp:cart' product.slug %}" class="btn  btn-lg btn-primary btn-success text-uppercase"> <i class="fas fa-shopping-cart"></i>  Заказать </a>
+     <a href="{% url 'mainapp:cart' product.slug %}" class="btn  btn-lg btn-primary btn-secondary text-uppercase"> <i class="fas fa-shopping-cart"></i>  Заказать </a>
     </div> 
     
     <!-- slider-product.// -->
@@ -71,14 +71,14 @@
 
             {% endfor %}
             <div style="position:absolute;z-index:10000;top:500 px;margin-left: 500 px;">
-                <h4> </h4><input type="submit" class= "btn btn-success btn-buy" value="Расчитать" />
-                
+                <h4> </h4><input type="submit" class= "btn btn-secondary btn-buy" value="Расчитать" />
+                <!--<p style="color:rgb(229, 152, 147)"></p><input type="submit" class= "btn btn-success btn-buy" value=Расчитать style="color:rgb(229, 152, 147)"-->
                 </div>
             </div>
             <input type="hidden" id="custId" name="product_id" value="{{ product.id }}">
             
            
-          
+            
            
         </div>
     <form>  
