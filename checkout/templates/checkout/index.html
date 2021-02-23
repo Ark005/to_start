@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container mt-5">
-  <h2 class="mb-3">Адрес доставки  <span class="text-muted">Проверка</span></h2>
+  <h4 class="mb-3">Адрес доставки  <span class="text-muted"></span></h4>
   <div class="row">
     <div class="col-md-9">
      <div class="card mb-5" style="height: auto">
@@ -17,6 +17,21 @@
           </form>
        </div>
      </div>
+
+
+     <h4 class="mb-3">Реквизиты для выставления счета  <span class="text-muted"></span></h4>
+     <div class="test_form">
+      <form action="{% url 'checkout:send_email' %}" method="post" >
+      {% csrf_token %}
+
+     {{ test_form}}
+      <button type="submit" class="btn btn-secondary float-right">далее</button>
+      </form>
+   </div>
+
+<br>
+<br>
+
       {% if savedAddress %}
       <h4>Сохраненный Адрес</h4>
       <div class="card mb-5" style="height: auto">
@@ -30,11 +45,15 @@
         <div class="card-body">
         <!-- Здесь отправка email -->
         <!-- <a href="{% url 'checkout:payment' %}" class="btn btn-primary float-right">Договор-оферта</a> -->
-        <a href="{% url 'checkout:send_email' %}"  class="btn btn-secondary btn-sm"></button>Договор-оферта</a>
+        <a href="{% url 'checkout:send_email' %}"  class="btn btn-success btn-sm"></button>получить счёт по почте</a>
 
         </div>
       </div>
       {% endif %}
+
+
+
+
 
 
       
@@ -45,7 +64,8 @@
           <ul class="list-group list-group-flush">
             {% for item in order_items %}
            <!--<li class="list-group-item">{{ item.item.name }} x {{ item.quantity }}</li>--> 
-            <li class="list-group-item">{{ item.item.name }} </li>
+            <li class="list-group-item">{{ item.item.name }}/ {{ item.item.box_size }}/{{ item.item.tirazh }} </li>
+           
             {% endfor %}
           </ul>
         </div>
@@ -57,14 +77,7 @@
     </div>
   </div>
 
-      <div class="test_form">
-          <form action="{% url 'checkout:send_email' %}" method="post" >
-          {% csrf_token %}
-
-         {{ test_form}}
-          <button type="submit" class="btn btn-success float-right">Отправить письмо</button>
-          </form>
-       </div>
+     
 
 </div>
 

@@ -20,7 +20,7 @@ def add_to_cart(request, slug):
         order = order_qs[0]
         # check if the order item is in the order
         if order.orderitems.filter(item__slug=item.slug).exists():
-            order_item.quantity += 1
+            #order_item.quantity += 1
             order_item.save()
             messages.info(request, f"{item.name} тираж изменён")
             return redirect("mainapp:cart-home")
